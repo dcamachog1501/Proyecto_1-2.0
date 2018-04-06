@@ -21,4 +21,3 @@ public class Enemy_GUI
         return enm;
     }
 }
-

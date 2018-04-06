@@ -314,7 +314,7 @@ public class Ventana_Juego extends JFrame
             else if(code==KeyEvent.VK_LEFT)
             {
               Thread l= new Thread(new Left(gest));
-              l.run();
+              l.start();
             }
         }
         @Override

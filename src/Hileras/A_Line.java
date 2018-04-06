@@ -204,7 +204,23 @@ public class A_Line implements Line
            }
            else if(ind+1==x)
            {
-               if(temp.getNext().getHealth()==1)
+               if(temp.getNext().getNext() == null){
+                   System.out.println("Ultimo");
+                   if(temp.getNext().getHealth()==1)
+                   {
+                    gestor.getGame().addMarc(temp.getNext().getPunt());
+                    gestor.getGame().updateMarcs();
+                    temp.setNext(null);
+                    this.len--;
+                    break;
+                   }
+                   else
+                   {
+                       temp.getNext().chnHealth(1);
+                       break;
+                   }
+               }
+               else if(temp.getNext().getHealth()==1)
                {
                     gestor.getGame().addMarc(temp.getNext().getPunt());
                     gestor.getGame().updateMarcs();
