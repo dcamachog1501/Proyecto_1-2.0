@@ -28,6 +28,7 @@ public class Boss implements Enemy
    private int speed;
    private Gestor2 gestor;
    private int lvl;
+   private Boolean Boss;
    
    @Override
    public void Init(int x, int y,int sup,int inf, Gestor2 gest,int lvl)
@@ -44,6 +45,7 @@ public class Boss implements Enemy
       setY(y);
       setGest(gest);
       this.lvl=lvl;
+      this.Boss=true;
    }
     @Override
     public void setType() 
@@ -70,7 +72,7 @@ public class Boss implements Enemy
     }
 
     @Override
-    public void setNext(Object enm) 
+    public void setNext(Enemy enm) 
     {
         this.next=(Enemy) enm;
     }
@@ -195,5 +197,17 @@ public class Boss implements Enemy
     public void setGest(Gestor2 gest) 
     {
         this.gestor=gest;
+    }
+
+    @Override
+    public Boolean isBoss() 
+    {
+        return this.Boss;
+    }
+
+    @Override
+    public void newx(int x) 
+    {
+        this.enx+=x;    
     }
 }

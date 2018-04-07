@@ -71,17 +71,9 @@ public class Basic_Line implements Line
         this.move= new BasicMove(this,gestor);
         this.GUI= new Enemy_GUI();
         this.lvl=lvl;
-        try
-        {
-          fuenteH= Font.createFont(Font.TRUETYPE_FONT, new File("Resources/Fuentes/Marcador.ttf"));  
-        }
-        catch(Exception e)
-        {
-           fuenteH=null; 
-        }
     }
     @Override
-    public void adder(Object enm)
+    public void adder(Enemy enm)
     {
         if(isEmpty()==true)
         {
@@ -189,12 +181,28 @@ public class Basic_Line implements Line
            else if(ind+1==x)
            {
                if(temp.getNext().getNext() == null){
-                   System.out.println("Ultimo");
                    if(temp.getNext().getHealth()==1)
                    {
                     gestor.getGame().addMarc(temp.getNext().getPunt());
                     gestor.getGame().updateMarcs();
                     temp.setNext(null);
+                    temp=this.Head;
+                    ind=0;
+                    while(temp!=null)
+                    {
+                      if(ind<x)
+                      {
+                          temp.setX(temp.getX()+50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                      else
+                      {
+                          temp.setX(temp.getX()-50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                    }
                     this.len--;
                     break;
                    }
@@ -209,6 +217,23 @@ public class Basic_Line implements Line
                     gestor.getGame().addMarc(temp.getNext().getPunt());
                     gestor.getGame().updateMarcs();
                     temp.setNext(temp.getNext().getNext());
+                    temp=this.Head;
+                    ind=0;
+                    while(temp!=null)
+                    {
+                      if(ind<x)
+                      {
+                          temp.newx(-50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                      else
+                      {
+                          temp.newx(50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                    }
                     this.len--;
                     break;
                }

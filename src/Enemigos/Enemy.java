@@ -18,7 +18,7 @@ public interface Enemy
     public void setFace();
     public void setHealth();
     public void setDir();
-    public void setNext(Object enm);
+    public void setNext(Enemy enm);
     public void setInf(int inf);
     public void setSup(int sup);
     public void setSpeed();
@@ -40,4 +40,6 @@ public interface Enemy
     public void chnHealth(int x);
     public int getSpeed();
     public void setGest(Gestor2 gest);
+    public Boolean isBoss();
+    public void newx(int x);
 }

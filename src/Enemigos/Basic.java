@@ -27,6 +27,7 @@ public class Basic implements Enemy
    private int speed;
    private Gestor2 gestor;
    private int lvl;
+   private Boolean Boss;
    
    @Override
    public void Init(int x, int y,int sup,int inf, Gestor2 gest,int lvl)
@@ -43,6 +44,7 @@ public class Basic implements Enemy
       setPunt();
       setX(x);
       setY(y);
+      this.Boss=false;
    }
     @Override
     public void setType() 
@@ -59,7 +61,7 @@ public class Basic implements Enemy
     @Override
     public void setHealth() 
     {
-        if(this.lvl<3)
+        if(this.lvl<2)
         {
             this.health=1;
         }
@@ -76,7 +78,7 @@ public class Basic implements Enemy
     }
 
     @Override
-    public void setNext(Object enm) 
+    public void setNext(Enemy enm) 
     {
         this.next=(Basic) enm;
     }
@@ -201,5 +203,15 @@ public class Basic implements Enemy
     public void setGest(Gestor2 gest) 
     {
         this.gestor=gest;
+    }
+
+    @Override
+    public Boolean isBoss() 
+    {
+        return this.Boss;
+    }
+    public void newx(int x)
+    {
+        this.enx+=x;
     }
 }

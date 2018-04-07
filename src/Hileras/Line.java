@@ -24,7 +24,7 @@ public interface Line
     public void setInf();
     public void setCurrent();
     public boolean isEmpty();
-    public void adder(Object enm);
+    public void adder(Enemy enm);
     public Image getCurrent();
     public void createLine();
     public void Render(Graphics g,Canvas c);

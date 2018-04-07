@@ -28,6 +28,7 @@ public class Type_A implements Enemy
    private int speed;
    private Gestor2 gestor;
    private int lvl;
+   private Boolean Boss;
    @Override
    public void Init(int x, int y,int sup,int inf, Gestor2 gest, int lvl)
    {
@@ -43,6 +44,7 @@ public class Type_A implements Enemy
       setPunt();
       setX(x);
       setY(y);
+      this.Boss=false;
    }
     @Override
     public void setType() 
@@ -59,18 +61,15 @@ public class Type_A implements Enemy
     @Override
     public void setHealth() 
     {
-        if(lvl<3)
+         if(lvl<2)
         {
             this.health=2;
         }
-//        else if(lvl<7)
-//        {
-//            this.health=3;
-//        }
-        else
+        else if(lvl>=2)
         {
-            this.health=4;
+            this.health=3;
         }
+
     }
 
     @Override
@@ -80,9 +79,9 @@ public class Type_A implements Enemy
     }
 
     @Override
-    public void setNext(Object enm) 
+    public void setNext(Enemy enm) 
     {
-        this.next=(Enemy) enm;
+        this.next=enm;
     }
 
     @Override
@@ -100,7 +99,15 @@ public class Type_A implements Enemy
     @Override
     public void setSpeed() 
     {
-        this.speed=300;
+        if(lvl<2)
+        {
+         this.speed=300;
+        }
+        else
+        {
+         this.speed=200;
+        }
+        
     }
 
     @Override
@@ -206,5 +213,17 @@ public class Type_A implements Enemy
     public void setGest(Gestor2 gest) 
     {
         this.gestor= gest;
+    }
+
+    @Override
+    public Boolean isBoss() 
+    {
+        return this.Boss;
+    }
+
+    @Override
+    public void newx(int x) 
+    {
+       this.enx+=x; 
     }
 }

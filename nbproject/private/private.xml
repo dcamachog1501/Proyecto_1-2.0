@@ -3,8 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Componentes_Jugador/Bullet.java</file>
-            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Main/Main.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Enemigos/Boss.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Ventanas/Ventana_Juego.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Fabrica_Enemigos/Basic_Creator.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Threads/Setup.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Hileras/Basic_Line.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Manager/GameManager.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Manager/LevelManager.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Fabrica_Enemigos/A_Creator.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Hileras/A_Line.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Hileras/Line.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Enemigos/Basic.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Threads/BasicMove.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Enemigos/Enemy_GUI.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Threads/Shoot.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Enemigos/Enemy.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Fabrica_Hileras/Line_Creator.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Enemigos/Type_A.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Fabrica_Hileras/Basic_Line_Creator.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Threads/Right.java</file>
         </group>
     </open-files>
 </project-private>

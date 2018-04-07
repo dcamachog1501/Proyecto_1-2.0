@@ -85,7 +85,7 @@ public class A_Line implements Line
         this.gestor=gest;
     }
     @Override
-    public void adder(Object enm)
+    public void adder(Enemy enm)
     {
         if(isEmpty()==true)
         {
@@ -189,11 +189,38 @@ public class A_Line implements Line
            {
                if(temp.getHealth()==1)
                {
+                   if(temp.isBoss())
+                   {
+                       gestor.getGame().addMarc(temp.getPunt());
+                       gestor.getGame().updateMarcs();
+                       this.destroy();
+                       break;
+                   }
+                   else
+                   {
                     this.Head=(Enemy) temp.getNext();
                     gestor.getGame().addMarc(temp.getPunt());
                     gestor.getGame().updateMarcs();
+                    temp=this.Head;
+                    ind=0;
+                    while(temp!=null)
+                    {
+                      if(ind<x)
+                      {
+                          temp.newx(-50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                      else
+                      {
+                          temp.newx(50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                    }
                     this.len--;
                     break;
+                   }
                }
            
                else
@@ -205,14 +232,41 @@ public class A_Line implements Line
            else if(ind+1==x)
            {
                if(temp.getNext().getNext() == null){
-                   System.out.println("Ultimo");
                    if(temp.getNext().getHealth()==1)
                    {
-                    gestor.getGame().addMarc(temp.getNext().getPunt());
-                    gestor.getGame().updateMarcs();
-                    temp.setNext(null);
-                    this.len--;
-                    break;
+                    if(temp.getNext().isBoss())
+                    {
+                        gestor.getGame().addMarc(temp.getNext().getPunt());
+                        gestor.getGame().updateMarcs();
+                        this.destroy();
+                        break;
+                    }
+
+                    else
+                    {
+                     gestor.getGame().addMarc(temp.getNext().getPunt());
+                     gestor.getGame().updateMarcs();
+                     temp.setNext(null);
+                     temp=this.Head;
+                     ind=0;
+                     while(temp!=null)
+                        {
+                          if(ind<x)
+                          {
+                              temp.newx(-50);
+                              temp=temp.getNext();
+                              ind+=1;
+                          }
+                          else
+                          {
+                              temp.newx(50);
+                              temp=temp.getNext();
+                              ind+=1;
+                          }
+                        }
+                     this.len--;
+                     break;
+                    }
                    }
                    else
                    {
@@ -222,11 +276,38 @@ public class A_Line implements Line
                }
                else if(temp.getNext().getHealth()==1)
                {
+                   if(temp.getNext().isBoss())
+                   {
+                       gestor.getGame().addMarc(temp.getNext().getPunt());
+                       gestor.getGame().updateMarcs();
+                       this.destroy();
+                       break;
+                   }
+                   else
+                   {
                     gestor.getGame().addMarc(temp.getNext().getPunt());
                     gestor.getGame().updateMarcs();
                     temp.setNext(temp.getNext().getNext());
+                    temp=this.Head;
+                    ind=0;
+                    while(temp!=null)
+                    {
+                      if(ind<x)
+                      {
+                          temp.newx(-50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                      else
+                      {
+                          temp.newx(50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                    }
                     this.len--;
                     break;
+                   }
                }
            
                else
@@ -321,5 +402,30 @@ public class A_Line implements Line
     public int getLen() 
     {
         return this.len;
+    }
+    public void destroy()
+    {
+        Enemy temp= this.Head;
+        while(this.Head!=null)
+        {
+            if(this.Head.getNext()==null)
+            {
+                this.Head=null;
+                this.len=0;
+            }
+            if(temp.getNext()==null)
+            {
+                temp=null;
+            }
+            else if(temp.getNext().getNext()==null)
+            {
+                temp.setNext(null);
+                temp=this.Head;
+            }
+            else
+            {
+                temp=temp.getNext();
+            }
+        }
     }
 }
