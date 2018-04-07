@@ -85,9 +85,17 @@ public class Type_A implements Enemy
     }
 
     @Override
-    public void setInf(int inf) 
+    public void setInf(int infe) 
     {
-        this.inf=inf;
+        if(infe<=0)
+        {
+            this.inf=0;
+        }
+        else
+        {
+        this.inf=infe;
+        }
+    
     }
 
     @Override
