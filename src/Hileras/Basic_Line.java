@@ -192,17 +192,20 @@ public class Basic_Line implements Line
                     {
                       if(ind<x)
                       {
-                          temp.setX(temp.getX()+50);
+                          temp.newx(-50);
+                          temp.setInf(temp.getInf()-100);
                           temp=temp.getNext();
                           ind+=1;
                       }
                       else
                       {
-                          temp.setX(temp.getX()-50);
+                          temp.newx(50);
+                          temp.setInf(temp.getInf()-100);
                           temp=temp.getNext();
                           ind+=1;
                       }
                     }
+                    
                     this.len--;
                     break;
                    }
@@ -224,16 +227,19 @@ public class Basic_Line implements Line
                       if(ind<x)
                       {
                           temp.newx(-50);
+                          temp.setInf(temp.getInf()-100);
                           temp=temp.getNext();
                           ind+=1;
                       }
                       else
                       {
                           temp.newx(50);
+                          temp.setInf(temp.getInf()-100);
                           temp=temp.getNext();
                           ind+=1;
                       }
                     }
+                    
                     this.len--;
                     break;
                }

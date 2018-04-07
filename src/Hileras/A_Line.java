@@ -208,12 +208,14 @@ public class A_Line implements Line
                       if(ind<x)
                       {
                           temp.newx(-50);
+                          temp.setInf(temp.getInf()-100);
                           temp=temp.getNext();
                           ind+=1;
                       }
                       else
                       {
                           temp.newx(50);
+                          temp.setInf(temp.getInf()-100);
                           temp=temp.getNext();
                           ind+=1;
                       }
@@ -254,12 +256,14 @@ public class A_Line implements Line
                           if(ind<x)
                           {
                               temp.newx(-50);
+                              temp.setInf(temp.getInf()-100);
                               temp=temp.getNext();
                               ind+=1;
                           }
                           else
                           {
                               temp.newx(50);
+                              temp.setInf(temp.getInf()-100);
                               temp=temp.getNext();
                               ind+=1;
                           }
@@ -295,12 +299,14 @@ public class A_Line implements Line
                       if(ind<x)
                       {
                           temp.newx(-50);
+                          temp.setInf(temp.getInf()-100);
                           temp=temp.getNext();
                           ind+=1;
                       }
                       else
                       {
                           temp.newx(50);
+                          temp.setInf(temp.getInf()-100);
                           temp=temp.getNext();
                           ind+=1;
                       }

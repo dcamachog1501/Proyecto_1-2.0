@@ -86,52 +86,68 @@ public class Type_B implements Enemy
     @Override
     public void setSpeed() 
     {
-        
+        if(lvl<2)
+        {
+         this.speed=300;
+        }
+        else
+        {
+         this.speed=200;
+        }
     }
 
     @Override
-    public void setPunt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setPunt() 
+    {
+        this.punt=200;
     }
 
     @Override
-    public void setX(int x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setX(int x) 
+    {
+        this.enx=x;
     }
 
     @Override
-    public void setY(int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setY(int y) 
+    {
+        this.eny=y;
     }
 
     @Override
-    public int getSup() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getSup() 
+    {
+        return this.sup;
     }
 
     @Override
-    public int getInf() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getInf() 
+    {
+        return this.inf;
     }
 
     @Override
-    public Enemy getNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Enemy getNext() 
+    {
+        return this.next;
     }
 
     @Override
-    public int getX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getX() 
+    {
+        return this.enx;
     }
 
     @Override
-    public int getY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getY() 
+    {
+        return this.eny;
     }
 
     @Override
-    public Image getFace() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Image getFace() 
+    {
+        return this.face;
     }
 
     @Override
