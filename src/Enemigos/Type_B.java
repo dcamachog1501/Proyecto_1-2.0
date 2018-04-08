@@ -22,7 +22,6 @@ public class Type_B implements Enemy
     private int health;
     private int dir=1;
     private int sup;
-    private int inf;
     private int punt;
     private String type;
     private int speed;
@@ -70,13 +69,6 @@ public class Type_B implements Enemy
     { 
         this.next=enm;
     }
-
-    @Override
-    public void setInf(int inf) 
-    {
-        this.inf=inf;
-    }
-
     @Override
     public void setSup(int sup) 
     {
@@ -119,13 +111,6 @@ public class Type_B implements Enemy
     {
         return this.sup;
     }
-
-    @Override
-    public int getInf() 
-    {
-        return this.inf;
-    }
-
     @Override
     public Enemy getNext() 
     {
@@ -189,7 +174,7 @@ public class Type_B implements Enemy
     }
 
     @Override
-    public void Init(int x, int y, int sup, int inf, Gestor2 gest, int lvl) 
+    public void Init(int x, int y, int sup, Gestor2 gest, int lvl) 
     {
       this.lvl=lvl;
       setGest(gest);
@@ -197,7 +182,6 @@ public class Type_B implements Enemy
       setFace();
       setHealth();
       setDir();
-      setInf(inf);
       setSup(sup);
       setSpeed();
       setPunt();

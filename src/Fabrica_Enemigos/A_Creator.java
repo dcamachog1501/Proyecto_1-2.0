@@ -16,10 +16,10 @@ import Ventanas.Gestor2;
 public class A_Creator implements Enemy_Creator
 {
     @Override
-    public Enemy createEnemy(int x, int y, int sup, int inf, Gestor2 gest, int lvl ) 
+    public Enemy createEnemy(int x, int y, int sup, Gestor2 gest, int lvl ) 
     {
         Type_A enm= new Type_A();
-        enm.Init(x,y,sup,inf, gest,lvl);
+        enm.Init(x,y,sup, gest,lvl);
         return enm;
     } 
 }

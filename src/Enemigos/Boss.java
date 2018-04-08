@@ -22,7 +22,6 @@ public class Boss implements Enemy
    private int health;
    private int dir=1;
    private int sup;
-   private int inf;
    private int punt;
    private String type;
    private int speed;
@@ -31,13 +30,12 @@ public class Boss implements Enemy
    private Boolean Boss;
    
    @Override
-   public void Init(int x, int y,int sup,int inf, Gestor2 gest,int lvl)
+   public void Init(int x, int y,int sup,Gestor2 gest,int lvl)
    {
       setType();
       setFace();
       setHealth();
       setDir();
-      setInf(inf);
       setSup(sup);
       setSpeed();
       setPunt();
@@ -76,13 +74,6 @@ public class Boss implements Enemy
     {
         this.next=(Enemy) enm;
     }
-
-    @Override
-    public void setInf(int inf) 
-    {
-        this.inf=inf;
-    }
-
     @Override
     public void setSup(int sup) 
     {
@@ -116,11 +107,6 @@ public class Boss implements Enemy
      public int getSup()
     {
         return sup;
-    }
-   @Override
-    public int getInf()
-    {
-        return inf;
     }
    @Override
     public Enemy getNext()

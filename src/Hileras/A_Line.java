@@ -31,7 +31,6 @@ public class A_Line implements Line
     private int enmx;
     private int enmy;
     private int sup;
-    private int inf;
     private A_Creator fabrica;
     private Boss_Creator fabricab;
     private Image current;
@@ -68,7 +67,6 @@ public class A_Line implements Line
         this.setEnmx();
         this.setEnmy();
         this.setHead();
-        this.setInf();
         this.setLen();
         this.setMaxlen();
         this.setSup();
@@ -125,25 +123,18 @@ public class A_Line implements Line
       {
           if(len==ind)
           {
-          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,this.inf,this.gestor,this.lvl);
+          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,this.gestor,this.lvl);
           enm.setPunt();
           this.adder(enm);
           enmx-=100;
-          inf-=100;
           }
           else
           {
-          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,this.inf,this.gestor,this.lvl);
+          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,this.gestor,this.lvl);
           this.adder(enm);
           enmx-=100;
-          inf-=100;
           }
       }
-    }
-    @Override
-    public int getInf()
-    {
-        return inf;
     }
     @Override
     public int getSup()
@@ -208,14 +199,12 @@ public class A_Line implements Line
                       if(ind<x)
                       {
                           temp.newx(-50);
-                          temp.setInf(temp.getInf()-50);
                           temp=temp.getNext();
                           ind+=1;
                       }
                       else
                       {
                           temp.newx(50);
-                          //temp.setInf(temp.getInf()+50);
                           temp=temp.getNext();
                           ind+=1;
                       }
@@ -256,14 +245,12 @@ public class A_Line implements Line
                           if(ind<x)
                           {
                               temp.newx(-50);
-                              temp.setInf(temp.getInf()-50);
                               temp=temp.getNext();
                               ind+=1;
                           }
                           else
                           {
                               temp.newx(50);
-                              //temp.setInf(temp.getInf()+50);
                               temp=temp.getNext();
                               ind+=1;
                           }
@@ -299,7 +286,6 @@ public class A_Line implements Line
                       if(ind<x)
                       {
                           temp.newx(-50);
-                          temp.setInf(temp.getInf()-50);
                           temp=temp.getNext();
                           ind+=1;
                       }
@@ -365,13 +351,6 @@ public class A_Line implements Line
     {
         this.sup=910;
     }
-
-    @Override
-    public void setInf() 
-    {
-        this.inf=630;
-    }
-
     @Override
     public void setCurrent() 
     {

@@ -75,13 +75,6 @@ public class B_Line implements Line
     {
          this.sup=910;
     }
-
-    @Override
-    public void setInf() 
-    {
-        this.inf=630;
-    }
-
     @Override
     public void setCurrent() 
     {
@@ -144,7 +137,7 @@ public class B_Line implements Line
       {
           if(len==ind)
           {
-          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,this.inf,this.gestor,this.lvl);
+          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,this.gestor,this.lvl);
           enm.setPunt();
           this.adder(enm);
           enmx-=100;
@@ -152,7 +145,7 @@ public class B_Line implements Line
           }
           else
           {
-          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,this.inf,this.gestor,this.lvl);
+          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,this.gestor,this.lvl);
           this.adder(enm);
           enmx-=100;
           inf-=100;
@@ -175,30 +168,28 @@ public class B_Line implements Line
     }
 
     @Override
-    public int getEnmy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getEnmy() 
+    {
+        return this.enmy;
     }
 
     @Override
-    public int getEnmx() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getEnmx() 
+    {
+        return this.enmx;
     }
 
     @Override
-    public Enemy getHead() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Enemy getHead() 
+    {
+        return this.Head;
     }
 
     @Override
-    public int getSup() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getSup() 
+    {
+        return this.sup;
     }
-
-    @Override
-    public int getInf() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public void Init(Gestor2 gest, int lvl) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

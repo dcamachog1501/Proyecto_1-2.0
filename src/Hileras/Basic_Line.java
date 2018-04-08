@@ -60,7 +60,6 @@ public class Basic_Line implements Line
         this.setEnmx();
         this.setEnmy();
         this.setHead();
-        this.setInf();
         this.setLen();
         this.setMaxlen();
         this.setSup();
@@ -109,16 +108,11 @@ public class Basic_Line implements Line
     {
       while(len<lenmax)
       {
-          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy, this.sup, this.inf,this.gestor,this.lvl);
+          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy, this.sup,this.gestor,this.lvl);
           this.adder(enm);
           enmx-=100;
           inf-=100;
       }
-    }
-    @Override
-    public int getInf()
-    {
-        return inf;
     }
     @Override
     public int getSup()
@@ -291,13 +285,6 @@ public class Basic_Line implements Line
     {
         this.sup=910;
     }
-
-    @Override
-    public void setInf() 
-    {
-        this.inf=630;
-    }
-
     @Override
     public void setCurrent() 
     {

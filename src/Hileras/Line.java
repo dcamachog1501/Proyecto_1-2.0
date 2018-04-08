@@ -21,7 +21,6 @@ public interface Line
     public void setEnmx();
     public void setEnmy();
     public void setSup();
-    public void setInf();
     public void setCurrent();
     public boolean isEmpty();
     public void adder(Enemy enm);
@@ -32,7 +31,6 @@ public interface Line
     public int getEnmx();
     public Enemy getHead();
     public int getSup();
-    public int getInf();
     public void Init(Gestor2 gest,int lvl);
     public void setFactory();
     public void eliminate(int x);
