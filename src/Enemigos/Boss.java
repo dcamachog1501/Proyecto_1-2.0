@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 public class Boss implements Enemy 
 {
    private Enemy next;
+   private Enemy prev;
    private Image face;
    private int enx;
    private int eny;
@@ -79,7 +80,11 @@ public class Boss implements Enemy
     @Override
     public void setNext(Enemy enm) 
     {
-        this.next=(Enemy) enm;
+        this.next=enm;
+    }
+    public void setPrev(Enemy enm)
+    {
+        this.prev=enm;
     }
     @Override
     public void setSup(int sup) 

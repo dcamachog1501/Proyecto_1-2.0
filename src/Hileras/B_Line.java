@@ -5,8 +5,10 @@
  */
 package Hileras;
 
+import Enemigos.Boss;
 import Enemigos.Enemy;
 import Enemigos.Enemy_GUI;
+import Enemigos.Type_B;
 import Fabrica_Enemigos.A_Creator;
 import Fabrica_Enemigos.B_Creator;
 import Fabrica_Enemigos.Boss_Creator;
@@ -105,18 +107,29 @@ public class B_Line implements Line
         }
         else
         {
-            Enemy temp=this.Head;
+            Enemy temp= this.Head;
             while(temp!=null)
             {
                 if(temp.getNext()==null)
                 {
-                    temp.setNext(enm);
-                    len++;
-                    break;
+                    if(enm.getClass()==Type_B.class)
+                    {
+                        temp.setNext(enm);
+                        ((Type_B)temp.getNext()).setPrev(temp);
+                        len++;
+                        break;
+                    }
+                    else if(enm.getClass()==Boss.class)
+                    {
+                       temp.setNext(enm);
+                       ((Boss)temp.getNext()).setPrev(temp);
+                       len++;
+                       break; 
+                    }
                 }
                 else
                 {
-                    temp=(Enemy) temp.getNext();
+                    temp=temp.getNext();
 
                 }
             }

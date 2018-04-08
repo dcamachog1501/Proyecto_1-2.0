@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 public class Type_B implements Enemy
 {
     private Enemy next;
+    private Enemy prev;
     private Image face;
     private int enx;
     private int eny;
@@ -68,6 +69,10 @@ public class Type_B implements Enemy
     public void setNext(Enemy enm) 
     { 
         this.next=enm;
+    }
+    public void setPrev(Enemy enm)
+    {
+        this.prev=enm;
     }
     @Override
     public void setSup(int sup) 
