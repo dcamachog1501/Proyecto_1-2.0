@@ -39,7 +39,7 @@ public Right(Gestor2 gest)
                  {
                   Thread.sleep(10);
                  }
-                 catch(Exception e)
+                 catch(Throwable e)
                  {
                      e.printStackTrace();
                  }
@@ -51,10 +51,13 @@ public Right(Gestor2 gest)
       }
       else
       {
-          try {
+          try 
+          {
               Thread.sleep(0);
-          } catch (InterruptedException ex) {
-              Logger.getLogger(Right.class.getName()).log(Level.SEVERE, null, ex);
+          } 
+          catch (Throwable e) 
+          {
+            e.printStackTrace();
           }
       }
       }

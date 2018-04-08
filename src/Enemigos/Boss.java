@@ -208,4 +208,8 @@ public class Boss implements Enemy
     {
         this.enx+=x;    
     }
+    public Enemy getPrev()
+    {
+        return this.prev;
+    }
 }

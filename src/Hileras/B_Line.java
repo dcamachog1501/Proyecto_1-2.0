@@ -275,5 +275,86 @@ public class B_Line implements Line
     {
         return this.len;
     }
-    
+    public void changer(int ind1,int ind2)
+    {
+        int ind0=0;
+        Enemy temp1=this.Head;
+        Enemy temp2=this.Head;
+        while(temp1!=null)
+        {
+           if(ind0==ind1)
+           {
+               ind0=0;
+               break;
+           }
+           else
+           {
+               temp1=temp1.getNext();
+               ind0++;
+           }
+        }
+        while(temp2!=null)
+        {
+            if(ind0==ind2)
+           {
+               ind0=0;
+               break;
+           }
+           else
+           {
+               temp2=temp2.getNext();
+               ind0++;
+           }
+        }
+        int Navx1=temp1.getX();
+        int Navx2=temp2.getX();
+        Enemy temp3=temp1.getNext();
+        Enemy temp4=temp2.getNext();
+        Enemy temp5=((Boss)temp1).getPrev();
+        Enemy temp6=((Type_B)temp2).getPrev();
+        temp1.setNext(temp4);
+        if(temp3!= null)
+        {
+          if(temp3.getClass()==Type_B.class)
+          {
+            ((Type_B)temp3).setPrev(temp2);
+          }
+          else if(temp3.getClass()==Boss.class)
+          {
+            ((Boss)temp3).setPrev(temp2);
+          }
+        }
+        ((Boss)temp1).setPrev(temp6);
+        if(temp5!=null)
+        {
+         temp5.setNext(temp2);
+        }
+        ((Type_B)temp2).setPrev(temp5);
+        temp2.setNext(temp3);
+        if(temp4!=null)
+        {
+            if(temp4.getClass()==Type_B.class)
+                {
+                    ((Type_B)temp4).setPrev(temp1);
+                }
+            else if(temp4.getClass()==Boss.class)
+                {
+                    ((Boss)temp4).setPrev(temp1);
+                }
+        }
+        if(temp6!=null)
+        {
+        temp6.setNext(temp1);
+        }
+        temp1.setX(Navx2);
+        temp2.setX(Navx1);
+        if(ind2==0)
+        {
+            this.Head=temp1;
+        }
+        else if(ind1==0)
+        {
+            this.Head=temp2;
+        }
+    }
 }

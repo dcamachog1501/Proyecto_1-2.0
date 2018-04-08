@@ -223,5 +223,8 @@ public class Type_B implements Enemy
     { 
        this.enx+=x; 
     }
-    
+    public Enemy getPrev()
+    {
+        return this.prev;
+    }
 }

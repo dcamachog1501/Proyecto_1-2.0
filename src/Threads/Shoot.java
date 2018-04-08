@@ -64,9 +64,9 @@ public class Shoot implements Runnable
                 set.getBull().chnBully(-25);
                 Thread.sleep(10);
                 }   
-                catch (Exception e) 
+                catch (Throwable e) 
                 {
-                e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
             else

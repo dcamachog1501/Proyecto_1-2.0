@@ -41,7 +41,7 @@ public Left(Gestor2 gest)
                      {
                       Thread.sleep(10);
                      }
-                     catch(Exception e)
+                     catch(Throwable e)
                      {
                          e.printStackTrace();
                      }
@@ -53,9 +53,12 @@ public Left(Gestor2 gest)
         }
         else
             {
-                try {
+                try 
+                {
                     Thread.sleep(0);
-                } catch (Exception e) {
+                } 
+                catch (Throwable e) 
+                {
                     e.printStackTrace();
                 }
             }

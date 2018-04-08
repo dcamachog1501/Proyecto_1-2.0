@@ -27,24 +27,8 @@ public class Main
     {
        Gestor2 g = new Gestor2();
        g.Init();
-//       g.gestInicial();
-//        Level_Creator l = new Level_Creator(g);
-//        Level v=l.createLevel(0);
-//        Line temp=v.getHead();
-//        while(temp!=null)
-//        {
-//            System.out.println(temp);
-//            temp=temp.getNext();
-//        }
-//        System.out.println(v.getLen());
-     B_Line_Creator b= new B_Line_Creator();
-     Line h=b.createLine(g, 4);
-     Enemy temp=h.getHead();
-     while(temp!=null)
-     {
-         System.out.println(temp);
-         temp=temp.getNext();
-     }
-        
+       g.gestInicial();
+
     }
 }
+    

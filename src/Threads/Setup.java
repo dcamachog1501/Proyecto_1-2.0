@@ -66,9 +66,11 @@ public class Setup implements Runnable
         if(!runnig)
             return;
             runnig=false;
-        try {
+        try 
+        {
             update.join();
-        } catch (Exception e) 
+        }
+        catch (Throwable e) 
         {
             e.printStackTrace();
         }
