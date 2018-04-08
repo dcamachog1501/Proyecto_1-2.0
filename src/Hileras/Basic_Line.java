@@ -193,19 +193,18 @@ public class Basic_Line implements Line
                       if(ind<x)
                       {
                           temp.newx(-50);
-                          temp.setInf(temp.getInf()-100);
+                          //temp.setInf(temp.getInf()-50);
                           temp=temp.getNext();
                           ind+=1;
                       }
                       else
                       {
                           temp.newx(50);
-                          temp.setInf(temp.getInf()-100);
                           temp=temp.getNext();
                           ind+=1;
                       }
                     }
-                    
+                    //this.Head.setInf(this.Head.getInf()+100);
                     this.len--;
                     break;
                    }
@@ -227,19 +226,18 @@ public class Basic_Line implements Line
                       if(ind<x)
                       {
                           temp.newx(-50);
-                          temp.setInf(temp.getInf()-100);
+                          //temp.setInf(temp.getInf()-50);
                           temp=temp.getNext();
                           ind+=1;
                       }
                       else
                       {
                           temp.newx(50);
-                          temp.setInf(temp.getInf()-100);
                           temp=temp.getNext();
                           ind+=1;
                       }
                     }
-                    
+                    //this.Head.setInf(this.Head.getInf()+100);
                     this.len--;
                     break;
                }
@@ -279,7 +277,7 @@ public class Basic_Line implements Line
     @Override
     public void setEnmx() 
     {
-        this.enmx=660;
+        this.enmx=860;
     }
 
     @Override

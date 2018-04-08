@@ -73,8 +73,12 @@ public class Ventana_Juego extends JFrame
     
     private LevelManager LManager;
     private Level_Verifier level;
-    private Thread lever;
-    
+    private Thread r;
+    private Right right;
+    private Thread l;
+    private Left left;
+    private boolean condr;
+    private boolean condl;
     Ventana_Juego(String title,Font FuenteT,Image Icono, Color Btn,Font FuenteM,Gestor2 gest,LevelManager lvl)
     {
        this.LManager=lvl;
@@ -98,7 +102,10 @@ public class Ventana_Juego extends JFrame
        this.cond=false;
        this.level= new Level_Verifier(gest);
        this.move=LManager.getCurrent().getMove();
-       
+       this.right=new Right(gest);
+       this.left= new Left(gest);
+       this.condr= true;
+       this.condl=true;
        Init();
     }
   public LevelManager getLManager()
@@ -144,7 +151,11 @@ public class Ventana_Juego extends JFrame
   }
   public void gameStarter()
   {
-      mover= new Thread((Runnable) move);
+      r= new Thread((Runnable) right);
+      r.start();
+      l= new Thread((Runnable) left);
+      l.start();
+      mover= new Thread((Runnable)move);
       mover.start();
   }
   public Thread getMover()
@@ -307,20 +318,41 @@ public class Ventana_Juego extends JFrame
             int code= e.getKeyCode();
             if(code==KeyEvent.VK_RIGHT)
             {
-              Thread r= new Thread(new Right(gest));
-              r.start();
-              
+             if(condr==true)
+             {
+             right.chnCond();
+             condr=false;
+             }
             }
             else if(code==KeyEvent.VK_LEFT)
             {
-              Thread l= new Thread(new Left(gest));
-              l.start();
+             if(condl==true)
+             {
+             left.chnCond();
+             condl=false;
             }
+        }
         }
         @Override
         public void keyReleased(KeyEvent e) 
         {
-       
+            int code= e.getKeyCode();
+            if(code==KeyEvent.VK_RIGHT)
+            {
+             if(condr==false)
+             {
+             right.chnCond();
+             condr=true;
+             }
+            }
+            else if(code==KeyEvent.VK_LEFT)
+            {
+             if(condl==false)
+             {
+             left.chnCond();
+             condl=true;
+             }
+            }
         }
   }
  
@@ -352,3 +384,4 @@ public class Ventana_Juego extends JFrame
   
   }
 }
+

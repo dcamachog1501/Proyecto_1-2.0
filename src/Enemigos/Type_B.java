@@ -151,58 +151,95 @@ public class Type_B implements Enemy
     }
 
     @Override
-    public void chnX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void chnX() 
+    {
+        if(dir==1)
+        {
+          this.enx-=50;
+        }
+        else
+        {
+            this.enx+=30;
+        }
     }
 
     @Override
-    public void chnY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void chnY() 
+    {
+         this.eny+=25;
     }
 
     @Override
-    public void chnDir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void chnDir() 
+    {
+         if(dir==1)
+        {
+            dir=0;
+        }
+        else
+        {
+            dir=1;
+        }
     }
 
     @Override
-    public int getPunt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getPunt() 
+    {
+        return this.punt;
     }
 
     @Override
-    public void Init(int x, int y, int sup, int inf, Gestor2 gest, int lvl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void Init(int x, int y, int sup, int inf, Gestor2 gest, int lvl) 
+    {
+      this.lvl=lvl;
+      setGest(gest);
+      setType();
+      setFace();
+      setHealth();
+      setDir();
+      setInf(inf);
+      setSup(sup);
+      setSpeed();
+      setPunt();
+      setX(x);
+      setY(y);
+      this.Boss=false;
     }
 
     @Override
-    public int getHealth() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getHealth() 
+    {
+        return this.health;
     }
 
     @Override
-    public void chnHealth(int x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void chnHealth(int x) 
+    {
+         this.health=this.health-x;
     }
 
     @Override
-    public int getSpeed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getSpeed() 
+    {
+        return this.speed;
     }
 
     @Override
-    public void setGest(Gestor2 gest) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setGest(Gestor2 gest) 
+    {
+        this.gestor=gest;
     }
 
     @Override
-    public Boolean isBoss() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Boolean isBoss() 
+    {
+        return this.Boss;
     }
 
     @Override
-    public void newx(int x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void newx(int x) 
+    { 
+       this.enx+=x; 
     }
     
 }

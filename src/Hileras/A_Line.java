@@ -208,14 +208,14 @@ public class A_Line implements Line
                       if(ind<x)
                       {
                           temp.newx(-50);
-                          temp.setInf(temp.getInf()-100);
+                          temp.setInf(temp.getInf()-50);
                           temp=temp.getNext();
                           ind+=1;
                       }
                       else
                       {
                           temp.newx(50);
-                          temp.setInf(temp.getInf()-100);
+                          //temp.setInf(temp.getInf()+50);
                           temp=temp.getNext();
                           ind+=1;
                       }
@@ -256,14 +256,14 @@ public class A_Line implements Line
                           if(ind<x)
                           {
                               temp.newx(-50);
-                              temp.setInf(temp.getInf()-100);
+                              temp.setInf(temp.getInf()-50);
                               temp=temp.getNext();
                               ind+=1;
                           }
                           else
                           {
                               temp.newx(50);
-                              temp.setInf(temp.getInf()-100);
+                              //temp.setInf(temp.getInf()+50);
                               temp=temp.getNext();
                               ind+=1;
                           }
@@ -299,14 +299,14 @@ public class A_Line implements Line
                       if(ind<x)
                       {
                           temp.newx(-50);
-                          temp.setInf(temp.getInf()-100);
+                          temp.setInf(temp.getInf()-50);
                           temp=temp.getNext();
                           ind+=1;
                       }
                       else
                       {
                           temp.newx(50);
-                          temp.setInf(temp.getInf()-100);
+                          //temp.setInf(temp.getInf()+50);
                           temp=temp.getNext();
                           ind+=1;
                       }
@@ -351,13 +351,13 @@ public class A_Line implements Line
     @Override
     public void setEnmx() 
     {
-        this.enmx=660;
+        this.enmx=860;
     }
 
     @Override
     public void setEnmy() 
     {
-        this.enmy=100;
+        this.enmy=200;
     }
 
     @Override

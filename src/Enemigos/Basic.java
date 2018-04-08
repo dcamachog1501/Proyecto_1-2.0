@@ -105,7 +105,14 @@ public class Basic implements Enemy
     @Override
     public void setSpeed() 
     {
-        this.speed=300;
+        if(lvl<2)
+        {
+         this.speed=150;
+        }
+        else
+        {
+         this.speed=100;
+        }
     }
 
     @Override
@@ -160,11 +167,11 @@ public class Basic implements Enemy
     {
         if(dir==1)
         {
-          this.enx-=50;
+          this.enx-=25;
         }
         else
         {
-            this.enx+=30;
+            this.enx+=25;
         }
     }
    @Override

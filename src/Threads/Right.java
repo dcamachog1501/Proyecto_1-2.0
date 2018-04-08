@@ -6,6 +6,8 @@
 package Threads;
 
 import Ventanas.Gestor2;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,27 +16,59 @@ import Ventanas.Gestor2;
 public class Right implements Runnable
 {
 private final Gestor2 gestor;
-private int Navx;
+private Boolean cond;
 
 public Right(Gestor2 gest)
 {
     this.gestor=gest;
-    this.Navx=gestor.getDatos().getSet().getMan().getNav().getNavx();
+    this.cond=false;
 }
     
 
     @Override
     public void run() 
     {
-      System.out.println("Right");
-      if(gestor.getDatos().getSet().getMan().getNav().getNavx()<920)
-              {
-               gestor.getDatos().getSet().getMan().getNav().chnNavx(Navx+20);
-              }
+      while(true)
+      {
+      if(cond==true)
+      {
+        if(gestor.getDatos().getNave().getNavx()<920)
+                {
+                 gestor.getDatos().getNave().chnNavx(gestor.getDatos().getNave().getNavx()+5);
+                 try
+                 {
+                  Thread.sleep(10);
+                 }
+                 catch(Exception e)
+                 {
+                     e.printStackTrace();
+                 }
+                }
         else
-              {
-              gestor.getDatos().getSet().getMan().getNav().chnNavx(920);
-              }
+                {
+                gestor.getDatos().getNave().chnNavx(920);
+                }
+      }
+      else
+      {
+          try {
+              Thread.sleep(0);
+          } catch (InterruptedException ex) {
+              Logger.getLogger(Right.class.getName()).log(Level.SEVERE, null, ex);
+          }
+      }
+      }
+    }
+    public void chnCond()
+    {
+        if(cond==true)
+        {
+            cond=false;
+        }
+        else
+        {
+            cond=true;
+        }
     }
     
 }

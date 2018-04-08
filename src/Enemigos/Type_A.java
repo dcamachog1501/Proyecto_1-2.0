@@ -107,15 +107,7 @@ public class Type_A implements Enemy
     @Override
     public void setSpeed() 
     {
-        if(lvl<2)
-        {
-         this.speed=300;
-        }
-        else
-        {
-         this.speed=200;
-        }
-        
+     this.speed=150;
     }
 
     @Override
@@ -170,11 +162,11 @@ public class Type_A implements Enemy
     {
         if(dir==1)
         {
-          this.enx-=50;
+          this.enx-=25;
         }
         else
         {
-            this.enx+=30;
+            this.enx+=25;
         }
     }
    @Override

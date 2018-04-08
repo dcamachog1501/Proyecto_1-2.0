@@ -6,6 +6,8 @@
 package Threads;
 
 import Ventanas.Gestor2;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *Clase de tipo Thread encargada de modificar las coordenadas en x de la nave
@@ -15,26 +17,59 @@ public class Left implements Runnable
 {
 private final Gestor2 gestor;
 private int Navx;
+private boolean cond;
 
 public Left(Gestor2 gest)
 {
     this.gestor=gest;
-    this.Navx=gestor.getDatos().getSet().getMan().getNav().getNavx();
+    this.Navx=gestor.getDatos().getNave().getNavx();
+    this.cond=false;
 }
     
 
     @Override
     public void run() 
     {
-      System.out.println("Left");
-      if(gestor.getDatos().getSet().getMan().getNav().getNavx()>0)
-              {
-               gestor.getDatos().getSet().getMan().getNav().chnNavx(Navx-20);
-              }
-      else
-              {
-              gestor.getDatos().getSet().getMan().getNav().chnNavx(0);
-              }
+      while(true)
+      {
+        if(cond==true)
+        {
+            if(gestor.getDatos().getNave().getNavx()>0)
+                    {
+                     gestor.getDatos().getNave().chnNavx(gestor.getDatos().getNave().getNavx()-5);
+                     try
+                     {
+                      Thread.sleep(10);
+                     }
+                     catch(Exception e)
+                     {
+                         e.printStackTrace();
+                     }
+                    }
+            else
+                    {
+                    gestor.getDatos().getNave().chnNavx(0);
+                    }
+        }
+        else
+            {
+                try {
+                    Thread.sleep(0);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+      }
     }
-    
+    public void chnCond()
+    {
+        if(cond==true)
+        {
+            cond=false;
+        }
+        else
+        {
+            cond=true;
+        }
+    }
 }

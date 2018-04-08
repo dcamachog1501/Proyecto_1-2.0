@@ -92,7 +92,7 @@ public class Boss implements Enemy
     @Override
     public void setSpeed() 
     {
-        this.speed=300;
+        this.speed=150;
     }
 
     @Override
@@ -147,11 +147,11 @@ public class Boss implements Enemy
     {
         if(dir==1)
         {
-          this.enx-=50;
+          this.enx-=25;
         }
         else
         {
-            this.enx+=30;
+            this.enx+=25;
         }
     }
    @Override

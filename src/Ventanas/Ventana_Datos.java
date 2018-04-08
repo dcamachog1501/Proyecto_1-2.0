@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import Componentes_Jugador.Nave;
 import Manager.LevelManager;
 import Threads.Level_Verifier;
 import Threads.Setup;
@@ -43,6 +44,7 @@ public class Ventana_Datos extends JFrame
   private Setup Inicio;
   private Level_Verifier Level;
   private Thread LevelT;
+  private Nave nave;
   private boolean cond;
   
   
@@ -80,6 +82,7 @@ public class Ventana_Datos extends JFrame
     this.fuentem=Fuente;
     this.gest=gest;
     this.Level=new Level_Verifier(gest);
+    this.nave= new Nave(gest);
     Init();
   }
   /**
@@ -89,15 +92,17 @@ public class Ventana_Datos extends JFrame
   {
      Nav.setIcon(new ImageIcon(navselector[ind]));
   }
+  public Nave getNave()
+  {
+      return this.nave;
+  }
   /**
    * Metodo para iniciar el Thread principal del juego.
    */
   public void initJuego()
  {
-     Inicio= new Setup(gest);
-     //LevelT= new Thread(Level);
+     Inicio= new Setup(gest,getNave());
      Inicio.start();
-    //LevelT.start();
      gest.getGame().gameStarter();
  }
   

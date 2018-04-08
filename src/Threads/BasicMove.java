@@ -47,7 +47,14 @@ public class BasicMove implements Runnable
                 temp=(Enemy) temp.getNext();
                 ++ind;
             }
-            
+            temp=hilera.getHead();
+            if(temp!=null)
+            {
+                while(temp.getNext()!=null)
+                {
+                    temp=temp.getNext();
+                }
+            }
             if(gestor.getGame().getLManager().getCurrent().getHead()==null)
             {
                 System.out.println("-----------------NEXT ROUND----------------");
@@ -55,7 +62,7 @@ public class BasicMove implements Runnable
                 gestor.getGame().updateScreen();
                 updateHil();
             }
-            else if(hilera.getHead().getX()<=hilera.getHead().getInf())
+            else if(temp.getX()<=10)
             {
                 temp=(Enemy) hilera.getHead();
                 while(temp!=null)
@@ -91,6 +98,7 @@ public class BasicMove implements Runnable
                     
             }
         try {
+            updateHil();
             Thread.sleep(gestor.getGame().getLManager().getCurrent().getHead().getSpeed());
             } 
         catch (InterruptedException ex) 

@@ -36,10 +36,10 @@ public class Setup implements Runnable
         
     }
     
-    public Setup(Gestor2 g)
+    public Setup(Gestor2 g, Nave nav)
     {
         gestor = g;
-        nave= new Nave(gestor);
+        nave=nav;
         bala= new Bullet(gestor,nave.getNavx(),nave.getNavy());
     }
     
