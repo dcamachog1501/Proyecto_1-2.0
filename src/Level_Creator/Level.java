@@ -6,6 +6,7 @@
 package Level_Creator;
 
 import Fabrica_Hileras.A_Line_Creator;
+import Fabrica_Hileras.B_Line_Creator;
 import Fabrica_Hileras.Basic_Line_Creator;
 import Hileras.Hileras_GUI;
 import Hileras.Line;
@@ -26,6 +27,7 @@ public class Level
     private Hileras_GUI GUI;
     private Basic_Line_Creator basic;
     private A_Line_Creator atype;
+    private B_Line_Creator btype;
     public Level(int x,Gestor2 gest)
     {
       this.current=x;
@@ -36,6 +38,7 @@ public class Level
       this.GUI= new Hileras_GUI();
       this.basic= new Basic_Line_Creator();
       this.atype= new A_Line_Creator();
+      this.btype=new B_Line_Creator();
     }
     public Line getLine()
     {
@@ -51,6 +54,23 @@ public class Level
           else if(rnd==1)
           {
              l=GUI.buildHilera(this.atype,this.gestor,this.current);
+          }
+        }
+        else if(current>=3)
+        {
+          Random r= new Random();
+          int rnd=r.nextInt(3);
+          if(rnd==0)
+          {
+             l=GUI.buildHilera(this.basic, this.gestor,this.current);
+          }
+          else if(rnd==1)
+          {
+             l=GUI.buildHilera(this.atype,this.gestor,this.current);
+          }
+          else if (rnd==2)
+          {
+              l=GUI.buildHilera(this.btype,this.gestor,this.current);
           }
           
         }

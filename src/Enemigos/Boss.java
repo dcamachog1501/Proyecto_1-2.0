@@ -60,7 +60,14 @@ public class Boss implements Enemy
     @Override
     public void setHealth() 
     {
-        this.health=2;
+        if(lvl<=3)
+        {
+            this.health=3;
+        }
+        else if(lvl>3)
+        {
+            this.health=4;
+        }
     }
 
     @Override

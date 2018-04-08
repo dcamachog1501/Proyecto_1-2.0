@@ -59,11 +59,11 @@ public class Type_A implements Enemy
     @Override
     public void setHealth() 
     {
-         if(lvl<2)
+         if(lvl<=3)
         {
             this.health=2;
         }
-        else if(lvl>=2)
+        else if(lvl>3)
         {
             this.health=3;
         }

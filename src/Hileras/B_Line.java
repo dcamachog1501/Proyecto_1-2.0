@@ -8,6 +8,7 @@ package Hileras;
 import Enemigos.Enemy;
 import Enemigos.Enemy_GUI;
 import Fabrica_Enemigos.A_Creator;
+import Fabrica_Enemigos.B_Creator;
 import Fabrica_Enemigos.Boss_Creator;
 import Threads.BasicMove;
 import Ventanas.Gestor2;
@@ -31,7 +32,7 @@ public class B_Line implements Line
     private int enmy;
     private int sup;
     private int inf;
-    private A_Creator fabrica;
+    private B_Creator fabrica;
     private Boss_Creator fabricab;
     private Image current;
     private Gestor2 gestor;
@@ -191,53 +192,75 @@ public class B_Line implements Line
         return this.sup;
     }
     @Override
-    public void Init(Gestor2 gest, int lvl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void Init(Gestor2 gest, int lvl) 
+    {
+        this.setCurrent();
+        this.setEnmx();
+        this.setEnmy();
+        this.setHead();
+        this.setLen();
+        this.setMaxlen();
+        this.setSup();
+        this.setFactory();
+        this.setGestor(gest);
+        this.setType();
+        this.next=null;
+        this.move=new BasicMove(this,gestor);
+        this.lvl=lvl;    }
+
+    @Override
+    public void setFactory() 
+    {
+        this.fabrica=new B_Creator();
+        this.fabricab= new Boss_Creator();
+        this.GUI= new Enemy_GUI();
     }
 
     @Override
-    public void setFactory() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void eliminate(int x) 
+    {
+        
+    }
+    @Override
+    public void setGestor(Gestor2 gest) 
+    {
+        this.gestor=gest;
     }
 
     @Override
-    public void eliminate(int x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setNext(Line l) 
+    {
+        this.next=l;
     }
 
     @Override
-    public void setGestor(Gestor2 gest) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Line getNext() 
+    {
+        return this.next;
     }
 
     @Override
-    public void setNext(Line l) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object getMove()
+    {
+        return this.move;
     }
 
     @Override
-    public Line getNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setType() 
+    {
+        this.type="B Type";
     }
 
     @Override
-    public Object getMove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getType() 
+    {
+        return this.type;
     }
 
     @Override
-    public void setType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getLen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getLen() 
+    {
+        return this.len;
     }
     
 }
