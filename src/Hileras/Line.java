@@ -6,6 +6,7 @@
 package Hileras;
 import Enemigos.Basic;
 import Enemigos.Enemy;
+import Threads.BasicMove;
 import Ventanas.Gestor2;
 import java.awt.*;
 
@@ -37,7 +38,7 @@ public interface Line
     public void setGestor(Gestor2 gest);
     public void setNext(Line l);
     public Line getNext();
-    public Object getMove();
+    public BasicMove getMove();
     public void setType();
     public String getType();
     public int getLen();

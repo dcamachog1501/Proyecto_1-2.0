@@ -412,7 +412,7 @@ public class B_Line implements Line
     }
 
     @Override
-    public Object getMove()
+    public BasicMove getMove()
     {
         return this.move;
     }
@@ -436,7 +436,9 @@ public class B_Line implements Line
     }
     public void Swap (Enemy e,Enemy e2)
     {
-     System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+     
+        
+        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx"+this.getLen()+"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
      if(this.len>1)
      {
       Enemy temp=e;
