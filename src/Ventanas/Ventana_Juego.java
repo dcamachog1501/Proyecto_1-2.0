@@ -152,10 +152,38 @@ public class Ventana_Juego extends JFrame
   public void gameStarter()
   {
       r= new Thread((Runnable) right);
+      r.setUncaughtExceptionHandler(
+        new Thread.UncaughtExceptionHandler() {
+        @Override
+        public void uncaughtException(Thread t, Throwable e) {
+            e.printStackTrace();
+                }
+            }
+      );
       r.start();
+      
       l= new Thread((Runnable) left);
+      
+      l.setUncaughtExceptionHandler(
+        new Thread.UncaughtExceptionHandler() {
+        @Override
+        public void uncaughtException(Thread t, Throwable e) {
+            e.printStackTrace();
+                }
+            }
+      );
       l.start();
+      
       mover= new Thread((Runnable)move);
+      
+      mover.setUncaughtExceptionHandler(
+      new Thread.UncaughtExceptionHandler() {
+        @Override
+        public void uncaughtException(Thread t, Throwable e) {
+            e.printStackTrace();
+                }
+            }
+      );
       mover.start();
   }
   public Thread getMover()

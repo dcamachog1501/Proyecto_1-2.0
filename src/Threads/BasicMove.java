@@ -9,9 +9,6 @@ import Hileras.Basic_Line;
 import Hileras.Line;
 import Ventanas.Gestor2;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Daniel Camacho 
@@ -21,6 +18,7 @@ public class BasicMove implements Runnable
     private Line hilera;
     private Enemy temp;
     private Gestor2 gestor;
+    private int cont;
     public BasicMove()
     {
         
@@ -29,7 +27,7 @@ public class BasicMove implements Runnable
     {
         this.hilera=hilera;
         this.gestor=gest;
-        
+        this.cont=0;
     }
     @Override
     public void run() 
@@ -113,6 +111,8 @@ public class BasicMove implements Runnable
                 e.printStackTrace();
             }
          }
+         
+         
          else if(hilera.getClass()==B_Line.class)
          {
             Enemy temp=(Enemy) hilera.getHead();
@@ -148,7 +148,6 @@ public class BasicMove implements Runnable
             else if(temp.getX()<=10)
             {
                 temp=(Enemy) hilera.getHead();
-                chnBoss(hilera);
                 while(temp!=null)
                 {
                     temp.chnDir();
@@ -161,7 +160,6 @@ public class BasicMove implements Runnable
             else if(hilera.getHead().getX()>=hilera.getHead().getSup())
             {
                 temp=(Enemy) hilera.getHead();
-                chnBoss(hilera);
                 while(temp!=null)
                 {
                     temp.chnDir();
@@ -174,7 +172,15 @@ public class BasicMove implements Runnable
             else
             {
                 temp=(Enemy) hilera.getHead();
+                if(cont==5)
+                {
                 chnBoss(hilera);
+                cont=0;
+                }
+                else
+                {
+                 cont++;
+                }
                 while(temp!=null)
                 {
                     temp.chnX();
@@ -187,7 +193,7 @@ public class BasicMove implements Runnable
             updateHil();
             Thread.sleep(gestor.getGame().getLManager().getCurrent().getHead().getSpeed());
             } 
-        catch (Throwable e) 
+        catch (InterruptedException e) 
             {
                 e.printStackTrace();
             }
@@ -198,7 +204,7 @@ public class BasicMove implements Runnable
              {
                  Thread.sleep(0);
              }
-             catch(Throwable e)
+             catch(InterruptedException e)
              {
                  e.printStackTrace();
              }
@@ -211,14 +217,13 @@ public class BasicMove implements Runnable
     }
     public void chnBoss(Line h)
     {
-        Enemy boss;
         Enemy temp=h.getHead();
+        Enemy temp2=h.getHead();
         int ind=0;
         while(temp!=null)
         {
             if(temp.isBoss())
             {
-                boss=temp;
                 break;
             }
             else
@@ -227,16 +232,19 @@ public class BasicMove implements Runnable
                 ind++;
             }
         }
-        while(true)
+        Random r= new Random();
+        int indr=r.nextInt(h.getLen());
+        int ind2=0;
+        while(ind==indr)
         {
-            Random r= new Random();
-            int indr=r.nextInt(7);
-            if(ind!=indr)
-            {
-            ((B_Line)h).changer(ind,indr);
-             break;
-            }
-        }  
+            indr=r.nextInt(h.getLen());
+        } 
+        while(ind2!=indr)
+        {
+            temp2=temp2.getNext();
+            ind2++;
+        }
+        ((B_Line)h).Swap(temp, temp2);
     }     
 }
 

@@ -230,10 +230,152 @@ public class B_Line implements Line
     }
 
     @Override
-    public void eliminate(int x) 
+    public void eliminate(int x)
     {
-        
+       Enemy temp= this.getHead();
+       int ind=0;
+       while(temp!=null)
+       {
+           if(x==0)
+           {
+               if(temp.getHealth()==1)
+               {
+                   if(temp.isBoss())
+                   {
+                       gestor.getGame().addMarc(temp.getPunt());
+                       gestor.getGame().updateMarcs();
+                       this.destroy();
+                       break;
+                   }
+                   else
+                   {
+                    this.Head=(Enemy) temp.getNext();
+                    gestor.getGame().addMarc(temp.getPunt());
+                    gestor.getGame().updateMarcs();
+                    temp=this.Head;
+                    ind=0;
+                    while(temp!=null)
+                    {
+                      if(ind<x)
+                      {
+                          temp.newx(-50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                      else
+                      {
+                          temp.newx(50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                    }
+                    this.len--;
+                    break;
+                   }
+               }
+           
+               else
+               {
+                    temp.chnHealth(1);
+                    break;
+               }
+           }
+           else if(ind+1==x)
+           {
+               if(temp.getNext().getNext() == null){
+                   if(temp.getNext().getHealth()==1)
+                   {
+                    if(temp.getNext().isBoss())
+                    {
+                        gestor.getGame().addMarc(temp.getNext().getPunt());
+                        gestor.getGame().updateMarcs();
+                        this.destroy();
+                        break;
+                    }
+
+                    else
+                    {
+                     gestor.getGame().addMarc(temp.getNext().getPunt());
+                     gestor.getGame().updateMarcs();
+                     temp.setNext(null);
+                     temp=this.Head;
+                     ind=0;
+                     while(temp!=null)
+                        {
+                          if(ind<x)
+                          {
+                              temp.newx(-50);
+                              temp=temp.getNext();
+                              ind+=1;
+                          }
+                          else
+                          {
+                              temp.newx(50);
+                              temp=temp.getNext();
+                              ind+=1;
+                          }
+                        }
+                     this.len--;
+                     break;
+                    }
+                   }
+                   else
+                   {
+                       temp.getNext().chnHealth(1);
+                       break;
+                   }
+               }
+               else if(temp.getNext().getHealth()==1)
+               {
+                   if(temp.getNext().isBoss())
+                   {
+                       gestor.getGame().addMarc(temp.getNext().getPunt());
+                       gestor.getGame().updateMarcs();
+                       this.destroy();
+                       break;
+                   }
+                   else
+                   {
+                    gestor.getGame().addMarc(temp.getNext().getPunt());
+                    gestor.getGame().updateMarcs();
+                    temp.setNext(temp.getNext().getNext());
+                    temp=this.Head;
+                    ind=0;
+                    while(temp!=null)
+                    {
+                      if(ind<x)
+                      {
+                          temp.newx(-50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                      else
+                      {
+                          temp.newx(50);
+                          //temp.setInf(temp.getInf()+50);
+                          temp=temp.getNext();
+                          ind+=1;
+                      }
+                    }
+                    this.len--;
+                    break;
+                   }
+               }
+           
+               else
+               {
+                    temp.getNext().chnHealth(1);
+                    break;
+               }
+           }
+           else
+           {
+           ind++;
+           temp=temp.getNext();
+           }
+       }
     }
+
     @Override
     public void setGestor(Gestor2 gest) 
     {
@@ -275,86 +417,277 @@ public class B_Line implements Line
     {
         return this.len;
     }
-    public void changer(int ind1,int ind2)
+    public Enemy delete(int ind)
     {
         int ind0=0;
-        Enemy temp1=this.Head;
-        Enemy temp2=this.Head;
-        while(temp1!=null)
+        Enemy temp=this.Head;
+        while(temp!=null)
         {
-           if(ind0==ind1)
-           {
-               ind0=0;
-               break;
-           }
-           else
-           {
-               temp1=temp1.getNext();
-               ind0++;
-           }
+            if(ind0==ind)
+            {
+               break; 
+            }
+            else
+            {
+                temp=temp.getNext();
+                ind0++;
+            }
         }
-        while(temp2!=null)
+        Enemy temp2=null;
+        
+        if(temp.getClass()==Type_B.class)
         {
-            if(ind0==ind2)
-           {
-               ind0=0;
-               break;
-           }
-           else
-           {
-               temp2=temp2.getNext();
-               ind0++;
-           }
+            temp2=((Type_B)temp).getPrev();
         }
-        int Navx1=temp1.getX();
-        int Navx2=temp2.getX();
-        Enemy temp3=temp1.getNext();
-        Enemy temp4=temp2.getNext();
-        Enemy temp5=((Boss)temp1).getPrev();
-        Enemy temp6=((Type_B)temp2).getPrev();
-        temp1.setNext(temp4);
-        if(temp3!= null)
+        else if(temp.getClass()==Boss.class)
         {
-          if(temp3.getClass()==Type_B.class)
-          {
-            ((Type_B)temp3).setPrev(temp2);
-          }
-          else if(temp3.getClass()==Boss.class)
-          {
-            ((Boss)temp3).setPrev(temp2);
-          }
+            temp2=((Boss)temp).getPrev();
         }
-        ((Boss)temp1).setPrev(temp6);
-        if(temp5!=null)
+        Enemy temp3=temp.getNext();
+        if(temp2!=null)
         {
-         temp5.setNext(temp2);
-        }
-        ((Type_B)temp2).setPrev(temp5);
         temp2.setNext(temp3);
-        if(temp4!=null)
-        {
-            if(temp4.getClass()==Type_B.class)
-                {
-                    ((Type_B)temp4).setPrev(temp1);
-                }
-            else if(temp4.getClass()==Boss.class)
-                {
-                    ((Boss)temp4).setPrev(temp1);
-                }
         }
-        if(temp6!=null)
+        if(temp3!=null)
         {
-        temp6.setNext(temp1);
+            if(temp3.getClass()==Type_B.class)
+            {
+                ((Type_B)temp3).setPrev(temp2);
+            }
+        
+            else if(temp3.getClass()==Boss.class)
+            {
+                ((Boss)temp3).setPrev(temp2);
+            }
         }
-        temp1.setX(Navx2);
-        temp2.setX(Navx1);
-        if(ind2==0)
-        {
-            this.Head=temp1;
-        }
-        else if(ind1==0)
-        {
-            this.Head=temp2;
-        }
+        this.len--;
+        return temp;
     }
+    
+    public void Swap (Enemy e,Enemy e2)
+    {
+     if(this.len>1)
+     {
+      Enemy temp=e;
+      Enemy temp2=e2;
+      Enemy temp3=temp.getNext();
+      Enemy temp4=temp2.getNext();
+      Enemy temp5=null;
+      Enemy temp6=null;
+      int Navx1=temp.getX();
+      int Navx2=temp2.getX();
+      if(temp!=null)
+      {
+         if(temp.getClass()==Type_B.class)
+         {
+             temp5=((Type_B)temp).getPrev();
+         }
+         else if(temp.getClass()==Boss.class)
+         {
+             temp5=((Boss)temp).getPrev();
+         }
+      }
+      if(temp2!=null)
+      {
+          if(temp2.getClass()==Type_B.class)
+         {
+             temp6=((Type_B)temp2).getPrev();
+         }
+         else if(temp2.getClass()==Boss.class)
+         {
+             temp6=((Boss)temp2).getPrev();
+         }
+      }
+      if(temp4!=null&&temp.getX()==temp4.getX())
+      {
+          temp2.setNext(temp3);
+          if(temp3!=null)
+          {
+            if(temp3.getClass()==Type_B.class)
+            {
+             ((Type_B)temp3).setPrev(temp2);
+            }
+            else if(temp3.getClass()==Boss.class)
+            {
+             ((Boss)temp3).setPrev(temp2);
+            }
+          }
+          temp.setNext(temp2);
+          if(temp2!=null)
+          {
+            if(temp2.getClass()==Type_B.class)
+            {
+             ((Type_B)temp2).setPrev(temp);
+            }
+            else if(temp2.getClass()==Boss.class)
+            {
+             ((Boss)temp2).setPrev(temp);
+            }
+          }
+          if(temp6!=null)
+          {
+            temp6.setNext(temp);
+          }
+          if(temp!=null)
+          {
+            if(temp.getClass()==Type_B.class)
+            {
+             ((Type_B)temp).setPrev(temp6);
+            }
+            else if(temp.getClass()==Boss.class)
+            {
+             ((Boss)temp).setPrev(temp6);
+            }
+          }
+    }
+      else if(temp6!=null&&temp.getX()==temp6.getX())
+      {
+          temp2.setNext(temp);
+          if(temp2!=null)
+          {
+            if(temp2.getClass()==Type_B.class)
+            {
+             ((Type_B)temp2).setPrev(temp5);
+            }
+            else if(temp2.getClass()==Boss.class)
+            {
+             ((Boss)temp2).setPrev(temp5);
+            }
+          }
+          if(temp5!=null)
+          {
+          temp5.setNext(temp2);
+          }
+          if(temp!=null)
+          {
+            if(temp.getClass()==Type_B.class)
+            {
+             ((Type_B)temp).setPrev(temp2);
+            }
+            else if(temp.getClass()==Boss.class)
+            {
+             ((Boss)temp).setPrev(temp2);
+            }
+          }
+          temp.setNext(temp4);
+          if(temp4!=null)
+          {
+            if(temp4.getClass()==Type_B.class)
+            {
+             ((Type_B)temp4).setPrev(temp2);
+            }
+            else if(temp4.getClass()==Boss.class)
+            {
+             ((Boss)temp4).setPrev(temp2);
+            }
+          }
+    }
+    else
+      {
+       temp.setNext(temp4);
+       if(temp!=null)
+          {
+            if(temp.getClass()==Type_B.class)
+            {
+             ((Type_B)temp).setPrev(temp6);
+            }
+            else if(temp.getClass()==Boss.class)
+            {
+             ((Boss)temp).setPrev(temp6);
+            }
+          }
+       if(temp6!=null)
+       {
+       temp6.setNext(temp);
+       }
+       if(temp4!=null)
+          {
+            if(temp4.getClass()==Type_B.class)
+            {
+             ((Type_B)temp4).setPrev(temp);
+            }
+            else if(temp4.getClass()==Boss.class)
+            {
+             ((Boss)temp4).setPrev(temp);
+            }
+          }
+       temp2.setNext(temp3);
+       if(temp2!=null)
+          {
+            if(temp2.getClass()==Type_B.class)
+            {
+             ((Type_B)temp2).setPrev(temp5);
+            }
+            else if(temp2.getClass()==Boss.class)
+            {
+             ((Boss)temp2).setPrev(temp5);
+            }
+          }
+       if(temp5!=null)
+       {
+       temp5.setNext(temp2);
+       }
+       if(temp3!=null)
+          {
+            if(temp3.getClass()==Type_B.class)
+            {
+             ((Type_B)temp3).setPrev(temp2);
+            }
+            else if(temp3.getClass()==Boss.class)
+            {
+             ((Boss)temp3).setPrev(temp2);
+            }
+          }
+      }
+    if(((Boss)temp).getPrev()==null)
+    {
+        this.Head=temp;
+    }
+    else if(((Type_B)temp2).getPrev()==null)
+    {
+        this.Head=temp2;
+    }
+    temp.setX(Navx2);
+    temp2.setX(Navx1);
+    this.refine();
+     }
+    }
+    public void refine()
+    {
+        Enemy temp=this.Head;
+        int x= temp.getX();
+        while(temp!=null)
+        {
+            temp.setX(x);
+            x-=100;
+            temp=temp.getNext();
+        }
+        
+          
+    }
+    public void destroy()
+    {
+        Enemy temp= this.Head;
+        while(this.Head!=null)
+        {
+            if(this.Head.getNext()==null)
+            {
+                this.Head=null;
+                this.len=0;
+            }
+            if(temp.getNext()==null)
+            {
+                temp=null;
+            }
+            else if(temp.getNext().getNext()==null)
+            {
+                temp.setNext(null);
+                temp=this.Head;
+            }
+            else
+            {
+                temp=temp.getNext();
+            }
+        }
+    }    
 }

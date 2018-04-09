@@ -5,12 +5,6 @@
  */
 package Manager;
 
-import Enemigos.Basic;
-import Fabrica_Enemigos.Basic_Creator;
-import Fabrica_Hileras.A_Line_Creator;
-import Fabrica_Hileras.Basic_Line_Creator;
-import Fabrica_Hileras.Line_Creator;
-import Hileras.A_Line;
 import Hileras.Hileras_GUI;
 import Hileras.Line;
 import Level_Creator.Level;
