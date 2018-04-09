@@ -8,6 +8,7 @@ package Main;
 import Enemigos.Enemy;
 import Fabrica_Hileras.B_Line_Creator;
 import Hileras.Basic_Line;
+import Hileras.C_Line;
 import Hileras.Line;
 import Level_Creator.Level;
 import Level_Creator.Level_Creator;
@@ -28,7 +29,15 @@ public class Main
        Gestor2 g = new Gestor2();
        g.Init();
        g.gestInicial();
-
+//       C_Line c= new C_Line();
+//       c.Init(g, 5);
+//       c.createLine();
+//       Enemy temp=c.getHead();
+//       while(temp!=null)
+//       {
+//           System.out.println(temp);
+//           temp=temp.getNext();
+//       }
     }
 }
     

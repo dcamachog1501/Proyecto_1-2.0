@@ -7,6 +7,7 @@ import Enemigos.Type_B;
 import Hileras.A_Line;
 import Hileras.B_Line;
 import Hileras.Basic_Line;
+import Hileras.C_Line;
 import Hileras.Line;
 import Ventanas.Gestor2;
 import java.util.Random;
@@ -36,7 +37,7 @@ public class BasicMove implements Runnable
         
         while(true)
         {
-         if(hilera.getClass()==Basic_Line.class||hilera.getClass()==A_Line.class)
+         if(hilera.getClass()==Basic_Line.class||hilera.getClass()==A_Line.class||hilera.getClass()==C_Line.class)
          {
             Enemy temp=(Enemy) hilera.getHead();
             int ind=0;
@@ -176,7 +177,10 @@ public class BasicMove implements Runnable
                 temp=(Enemy) hilera.getHead();
                 if(cont==5)
                 {
+                if(hilera.getLen()>1)
+                {
                 chnBoss(hilera);
+                }
                 cont=0;
                 }
                 else

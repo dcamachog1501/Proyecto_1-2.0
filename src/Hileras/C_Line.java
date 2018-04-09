@@ -26,6 +26,7 @@ import java.util.Random;
  */
 public class C_Line implements Line {
     private Enemy Head;
+    private Enemy Tail;
     private int len;
     private int lenmax;
     private int enmx;
@@ -44,6 +45,10 @@ public class C_Line implements Line {
     public void setHead() 
     {
         this.Head=null;
+    }
+    public void setTail()
+    {
+        this.Tail=null;
     }
 
     @Override
@@ -99,26 +104,22 @@ public class C_Line implements Line {
     {
       if(isEmpty()==true)
         {
-            this.Head=(Enemy) enm;
+            this.Head=enm;
+            this.Tail=enm;
+            this.Head.setNext(this.Tail);
             len++;
         }
         else
         {
             Enemy temp=this.Head;
-            while(temp!=null)
+            while(temp.getX()!=this.Tail.getX())
             {
-                if(temp.getNext()==null)
-                {
-                    temp.setNext(enm);
-                    len++;
-                    break;
-                }
-                else
-                {
-                    temp=(Enemy) temp.getNext();
-
-                }
+                temp=temp.getNext();
             }
+            temp.setNext(enm);
+            this.Tail=enm;
+            this.Tail.setNext(this.Head);
+            len++;
         }
     }
 
