@@ -39,7 +39,15 @@ public class Shoot implements Runnable
         set.getBull().setBullx(Navx+17);
         while(set.getBull().getBully()>0)
         {
-            Enemy temp=gestor.getGame().getLManager().getCurrent().getHead();
+            Enemy temp=null;
+            try
+            {
+            temp=gestor.getGame().getLManager().getCurrent().getHead();
+            }
+            catch(Exception e)
+            {
+                
+            }
             int ind=0;
             while(temp!=null)
             {

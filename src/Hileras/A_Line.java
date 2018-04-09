@@ -393,6 +393,8 @@ public class A_Line implements Line
         Enemy temp= this.Head;
         while(this.Head!=null)
         {
+         if(temp!=null)
+            {
             if(this.Head.getNext()==null)
             {
                 this.Head=null;
@@ -411,6 +413,7 @@ public class A_Line implements Line
             {
                 temp=temp.getNext();
             }
+            } 
         }
     }
 }

@@ -52,7 +52,7 @@ public class Type_B implements Enemy
         {
             this.health=3;
         }
-        else if(lvl>7)
+        else if(lvl>=7)
         {
             this.health=4;
         }

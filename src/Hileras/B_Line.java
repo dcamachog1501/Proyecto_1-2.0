@@ -14,6 +14,7 @@ import Fabrica_Enemigos.B_Creator;
 import Fabrica_Enemigos.Boss_Creator;
 import Threads.BasicMove;
 import Ventanas.Gestor2;
+import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -250,6 +251,14 @@ public class B_Line implements Line
                    else
                    {
                     this.Head=(Enemy) temp.getNext();
+                    if(temp.getNext().getClass()==Type_B.class)
+                    {
+                        ((Type_B)temp.getNext()).setPrev(null);
+                    }
+                    else if(temp.getNext().getClass()==Boss.class)
+                    {
+                        ((Boss)temp.getNext()).setPrev(null);
+                    }
                     gestor.getGame().addMarc(temp.getPunt());
                     gestor.getGame().updateMarcs();
                     temp=this.Head;
@@ -339,6 +348,14 @@ public class B_Line implements Line
                     gestor.getGame().addMarc(temp.getNext().getPunt());
                     gestor.getGame().updateMarcs();
                     temp.setNext(temp.getNext().getNext());
+                    if(temp.getNext().getClass()==Type_B.class)
+                    {
+                        ((Type_B)temp.getNext()).setPrev(temp);
+                    }
+                    else if(temp.getNext().getClass()==Boss.class)
+                    {
+                        ((Boss)temp.getNext()).setPrev(temp); 
+                    }
                     temp=this.Head;
                     ind=0;
                     while(temp!=null)
@@ -417,61 +434,23 @@ public class B_Line implements Line
     {
         return this.len;
     }
-    public Enemy delete(int ind)
-    {
-        int ind0=0;
-        Enemy temp=this.Head;
-        while(temp!=null)
-        {
-            if(ind0==ind)
-            {
-               break; 
-            }
-            else
-            {
-                temp=temp.getNext();
-                ind0++;
-            }
-        }
-        Enemy temp2=null;
-        
-        if(temp.getClass()==Type_B.class)
-        {
-            temp2=((Type_B)temp).getPrev();
-        }
-        else if(temp.getClass()==Boss.class)
-        {
-            temp2=((Boss)temp).getPrev();
-        }
-        Enemy temp3=temp.getNext();
-        if(temp2!=null)
-        {
-        temp2.setNext(temp3);
-        }
-        if(temp3!=null)
-        {
-            if(temp3.getClass()==Type_B.class)
-            {
-                ((Type_B)temp3).setPrev(temp2);
-            }
-        
-            else if(temp3.getClass()==Boss.class)
-            {
-                ((Boss)temp3).setPrev(temp2);
-            }
-        }
-        this.len--;
-        return temp;
-    }
-    
     public void Swap (Enemy e,Enemy e2)
     {
+     System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
      if(this.len>1)
      {
       Enemy temp=e;
       Enemy temp2=e2;
       Enemy temp3=temp.getNext();
-      Enemy temp4=temp2.getNext();
+      Enemy temp4=null;
+      try
+      {
+      temp4=temp2.getNext();
+      }
+      catch(Exception er)
+      {
+          
+      }
       Enemy temp5=null;
       Enemy temp6=null;
       int Navx1=temp.getX();
@@ -574,11 +553,11 @@ public class B_Line implements Line
           {
             if(temp4.getClass()==Type_B.class)
             {
-             ((Type_B)temp4).setPrev(temp2);
+             ((Type_B)temp4).setPrev(temp);
             }
             else if(temp4.getClass()==Boss.class)
             {
-             ((Boss)temp4).setPrev(temp2);
+             ((Boss)temp4).setPrev(temp);
             }
           }
     }
@@ -655,12 +634,22 @@ public class B_Line implements Line
     public void refine()
     {
         Enemy temp=this.Head;
+        try
+        {
         int x= temp.getX();
         while(temp!=null)
         {
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            System.out.println(temp);
+                    
             temp.setX(x);
             x-=100;
             temp=temp.getNext();
+        }
+        }
+        catch(Exception e)
+        {
+            
         }
         
           

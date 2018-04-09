@@ -3,6 +3,7 @@ package Threads;
 
 import Componentes_Jugador.Bullet;
 import Enemigos.Enemy;
+import Enemigos.Type_B;
 import Hileras.A_Line;
 import Hileras.B_Line;
 import Hileras.Basic_Line;
@@ -115,6 +116,7 @@ public class BasicMove implements Runnable
          
          else if(hilera.getClass()==B_Line.class)
          {
+            ((B_Line)hilera).refine();
             Enemy temp=(Enemy) hilera.getHead();
             int ind=0;
             while(temp!=null)
@@ -217,11 +219,13 @@ public class BasicMove implements Runnable
     }
     public void chnBoss(Line h)
     {
+        System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");   
         Enemy temp=h.getHead();
         Enemy temp2=h.getHead();
         int ind=0;
         while(temp!=null)
         {
+            System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
             if(temp.isBoss())
             {
                 break;
@@ -233,6 +237,7 @@ public class BasicMove implements Runnable
             }
         }
         Random r= new Random();
+        System.out.println(h.getLen());
         int indr=r.nextInt(h.getLen());
         int ind2=0;
         while(ind==indr)
@@ -241,6 +246,7 @@ public class BasicMove implements Runnable
         } 
         while(ind2!=indr)
         {
+            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
             temp2=temp2.getNext();
             ind2++;
         }
