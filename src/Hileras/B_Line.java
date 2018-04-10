@@ -152,7 +152,7 @@ public class B_Line implements Line
       {
           if(len==ind)
           {
-          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,this.gestor,this.lvl);
+          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl);
           enm.setPunt();
           this.adder(enm);
           enmx-=100;
@@ -160,7 +160,7 @@ public class B_Line implements Line
           }
           else
           {
-          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,this.gestor,this.lvl);
+          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl);
           this.adder(enm);
           enmx-=100;
           inf-=100;

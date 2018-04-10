@@ -5,6 +5,7 @@
  */
 package Hileras;
 
+import Enemigos.Boss;
 import Enemigos.Enemy;
 import Enemigos.Enemy_GUI;
 import Fabrica_Enemigos.A_Creator;
@@ -138,14 +139,14 @@ public class C_Line implements Line {
       {
           if(len==ind)
           {
-          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,this.gestor,this.lvl);
+          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl);
           enm.setPunt();
           this.adder(enm);
           enmx-=100;
           }
           else
           {
-          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,this.gestor,this.lvl);
+          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl);
           this.adder(enm);
           enmx-=100;
           }
@@ -231,10 +232,40 @@ public class C_Line implements Line {
                {
                    if(temp.isBoss())
                    {
-                       gestor.getGame().addMarc(temp.getPunt());
-                       gestor.getGame().updateMarcs();
-                       //this.destroy();
-                       break;
+                    this.Head=temp.getNext();
+                    this.Tail.setNext(this.Head);
+                    gestor.getGame().addMarc(temp.getPunt());
+                    gestor.getGame().updateMarcs();
+                    temp=this.Head;
+                    this.len-=1;
+                    System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  "+this.len);
+                    ind=0;
+                    int indl=0;
+                    int len=this.len;
+                    while(indl!=len)
+                    {
+                      if(ind<x)
+                      {
+                          temp.newx(-50);
+                          temp=temp.getNext();
+                          ind++;
+                          indl++;
+                      }
+                      else
+                      {
+                          temp.newx(50);
+                          temp=temp.getNext();
+                          ind++;
+                          indl++;
+                      }
+                    }
+                    if(this.getLen()>0)
+                    {
+                    Random rnd= new Random();
+                    int r= rnd.nextInt(this.getLen());
+                    chnBoss(r);
+                    }
+                    break;
                    }
                    else
                    {
@@ -244,6 +275,7 @@ public class C_Line implements Line {
                     gestor.getGame().updateMarcs();
                     temp=this.Head;
                     this.len-=1;
+                    System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  "+this.len);
                     ind=0;
                     int indl=0;
                     int len=this.len;
@@ -283,9 +315,36 @@ public class C_Line implements Line {
                     if(temp.getNext().isBoss())
                     {
                         gestor.getGame().addMarc(temp.getNext().getPunt());
-                        gestor.getGame().updateMarcs();
-                        //this.destroy();
-                        break;
+                     gestor.getGame().updateMarcs();
+                     this.Tail=temp;
+                     this.Tail.setNext(this.Head);
+                     temp=this.Head;
+                     this.len-=1;
+                     System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  "+this.len);
+                     int indl=0;
+                     int len=this.getLen();
+                     ind=0;
+                     while(indl!=len)
+                        {
+                          if(ind<x)
+                          {
+                              temp.newx(-50);
+                              temp=temp.getNext();
+                              ind++;
+                              indl++;
+                          }
+                          else
+                          {
+                              temp.newx(50);
+                              temp=temp.getNext();
+                              ind++;
+                              indl++;
+                          }
+                        }
+                    Random rnd= new Random();
+                    int r= rnd.nextInt(this.getLen());
+                    chnBoss(r);
+                     break;
                     }
 
                     else
@@ -296,6 +355,7 @@ public class C_Line implements Line {
                      this.Tail.setNext(this.Head);
                      temp=this.Head;
                      this.len-=1;
+                     System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  "+this.len);
                      int indl=0;
                      int len=this.getLen();
                      ind=0;
@@ -329,10 +389,37 @@ public class C_Line implements Line {
                {
                    if(temp.getNext().isBoss())
                    {
-                       gestor.getGame().addMarc(temp.getNext().getPunt());
-                       gestor.getGame().updateMarcs();
-                       //this.destroy();
-                       break;
+                    gestor.getGame().addMarc(temp.getNext().getPunt());
+                    gestor.getGame().updateMarcs();
+                    temp.setNext(temp.getNext().getNext());
+                    temp=this.Head;
+                    this.len-=1;
+                    System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  "+this.len);
+                    int indl=0;
+                    int len=this.getLen();
+                    ind=0;
+                    while(indl!=len)
+                    {
+                      if(ind<x)
+                      {
+                          temp.newx(-50);
+                          temp=temp.getNext();
+                          ind++;
+                          indl++;
+                      }
+                      else
+                      {
+                          temp.newx(50);
+                          //temp.setInf(temp.getInf()+50);
+                          temp=temp.getNext();
+                          ind++;
+                          indl++;
+                      }
+                    }
+                    Random rnd= new Random();
+                    int r= rnd.nextInt(this.getLen());
+                    chnBoss(r);
+                    break;
                    }
                    else
                    {
@@ -341,6 +428,7 @@ public class C_Line implements Line {
                     temp.setNext(temp.getNext().getNext());
                     temp=this.Head;
                     this.len-=1;
+                       System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX "+this.len);
                     int indl=0;
                     int len=this.getLen();
                     ind=0;
@@ -424,5 +512,59 @@ public class C_Line implements Line {
     public Enemy getTail()
     {
         return this.Tail;
+    }
+    public void chnBoss(int x)
+    {
+       Enemy temp=this.Head;
+       int ind=0;
+       while(true)
+       {
+        if(x==0)
+        {
+            if(this.getLen()>1)
+            {
+                Boss b=new Boss();
+                b.Init(this.Head.getX(),this.Head.getY(),this.Head.getSup(),this.Head.getDir(),gestor, lvl);
+                b.setNext(this.Head.getNext());
+                this.Tail.setNext(b);
+                this.Head=b;
+            break;
+            }
+            else if(this.getLen()==1)
+            {
+                Boss b=new Boss();
+                b.Init(this.Head.getX(),this.Head.getY(),this.Head.getSup(),this.Head.getDir(),gestor, lvl);
+                this.Tail=b;
+                this.Head=b;
+                b.setNext(b);
+                break;
+            }
+        }
+        else if(ind+1==x)
+        {
+            if(temp.getNext().getX()==this.Tail.getX())
+            {
+                Boss b=new Boss();
+                b.Init(temp.getNext().getX(),temp.getNext().getY(),temp.getNext().getSup(),temp.getNext().getDir(),gestor, lvl);
+                b.setNext(temp.getNext().getNext());
+                temp.setNext(b);
+                this.Tail=b;
+                break;
+            }
+            else
+            {
+                Boss b=new Boss();
+                b.Init(temp.getNext().getX(), temp.getNext().getY(),temp.getNext().getSup(),temp.getNext().getDir(),gestor, lvl);
+                b.setNext(temp.getNext().getNext());
+                temp.setNext(b);
+                break;
+            }
+        }
+        else
+        {
+            temp=temp.getNext();
+            ind++;
+        }
+       }
     }
 }

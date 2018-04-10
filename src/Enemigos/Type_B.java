@@ -60,7 +60,7 @@ public class Type_B implements Enemy
     }
 
     @Override
-    public void setDir() 
+    public void setDir(int dir) 
     {
         this.dir=1;    
     }
@@ -172,14 +172,14 @@ public class Type_B implements Enemy
     }
 
     @Override
-    public void Init(int x, int y, int sup, Gestor2 gest, int lvl) 
+    public void Init(int x, int y, int sup,int dir,Gestor2 gest, int lvl) 
     {
       this.lvl=lvl;
       setGest(gest);
       setType();
       setFace();
       setHealth();
-      setDir();
+      setDir(dir);
       setSup(sup);
       setSpeed();
       setPunt();
@@ -226,5 +226,11 @@ public class Type_B implements Enemy
     public Enemy getPrev()
     {
         return this.prev;
+    }
+
+    @Override
+    public int getDir() 
+    {
+        return this.dir;
     }
 }

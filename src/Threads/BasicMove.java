@@ -175,7 +175,7 @@ public class BasicMove implements Runnable
          }
          else if(hilera.getClass()==C_Line.class)
          {
-           if(gestor.getGame().getLManager().getCurrent().getHead()==null)
+           if(gestor.getGame().getLManager().getCurrent().getLen()==0)
             {
                 gestor.getGame().getLManager().nextLine();
                 gestor.getGame().updateScreen();

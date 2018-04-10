@@ -31,12 +31,12 @@ public class Boss implements Enemy
    private Boolean Boss;
    
    @Override
-   public void Init(int x, int y,int sup,Gestor2 gest,int lvl)
+   public void Init(int x, int y,int sup,int dir,Gestor2 gest,int lvl)
    {
       setType();
       setFace();
       setHealth();
-      setDir();
+      setDir(dir);
       setSup(sup);
       setSpeed();
       setPunt();
@@ -72,9 +72,9 @@ public class Boss implements Enemy
     }
 
     @Override
-    public void setDir() 
+    public void setDir(int dir) 
     {
-        this.dir=1;
+        this.dir=dir;
     }
 
     @Override
@@ -211,5 +211,11 @@ public class Boss implements Enemy
     public Enemy getPrev()
     {
         return this.prev;
+    }
+
+    @Override
+    public int getDir() 
+    {
+        return this.dir;
     }
 }

@@ -17,10 +17,10 @@ public class C_Creator implements Enemy_Creator
 {
 
     @Override
-    public Enemy createEnemy(int x, int y, int sup, Gestor2 gest, int lvl) 
+    public Enemy createEnemy(int x, int y, int sup,int dir,Gestor2 gest, int lvl) 
     {
         Type_C enm= new Type_C();
-        enm.Init(x,y,sup, gest,lvl);
+        enm.Init(x,y,sup,dir,gest,lvl);
         return enm;
     }
     

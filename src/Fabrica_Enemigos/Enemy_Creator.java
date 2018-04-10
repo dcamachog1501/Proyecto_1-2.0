@@ -14,5 +14,5 @@ import Ventanas.Gestor2;
  */
 public interface Enemy_Creator
 {
-    public Enemy createEnemy(int x, int y, int sup, Gestor2 gest, int lvl);
+    public Enemy createEnemy(int x, int y, int sup,int dir,Gestor2 gest, int lvl);
 }
