@@ -6,7 +6,15 @@
 package Threads;
 
 import Componentes_Jugador.Bullet;
+import Enemigos.Basic;
 import Enemigos.Enemy;
+import Enemigos.Type_A;
+import Enemigos.Type_B;
+import Enemigos.Type_C;
+import Hileras.A_Line;
+import Hileras.B_Line;
+import Hileras.Basic_Line;
+import Hileras.C_Line;
 import Ventanas.Gestor2;
 import java.awt.event.KeyListener;
 
@@ -49,22 +57,50 @@ public class Shoot implements Runnable
                 
             }
             int ind=0;
-            while(temp!=null)
+            if(temp!=null)
             {
-                Bullet b=set.getBull();
-                if(b.getBullx()<temp.getX()+64&& b.getBullx()+24>temp.getX()
-                   && b.getBully()<temp.getY()+64&&b.getBully()+24> temp.getY())
+                if(gestor.getGame().getLManager().getCurrent().getClass()==A_Line.class||gestor.getGame().getLManager().getCurrent().getClass()==B_Line.class||gestor.getGame().getLManager().getCurrent().getClass()==Basic_Line.class)
                 {
-                    System.out.println("Killing");
-                    gestor.getGame().getLManager().getCurrent().eliminate(ind);
-                    set.getBull().chnCond();
-                    set.getBull().setBully(Navy);
-                    gestor.getGame().chanCond();
-                    gestor.getGame().adder();
-                    break;
+                    while(temp!=null)
+                    {
+                        Bullet b=set.getBull();
+                        if(b.getBullx()<temp.getX()+64&& b.getBullx()+24>temp.getX()
+                           && b.getBully()<temp.getY()+64&&b.getBully()+24> temp.getY())
+                        {
+                            gestor.getGame().getLManager().getCurrent().eliminate(ind);
+                            set.getBull().chnCond();
+                            set.getBull().setBully(Navy);
+                            gestor.getGame().chanCond();
+                            gestor.getGame().adder();
+                            break;
+                        }
+                        temp=(Enemy) temp.getNext();
+                        ++ind;
+                    }
                 }
-                temp=(Enemy) temp.getNext();
-                ++ind;
+                if(gestor.getGame().getLManager().getCurrent().getClass()==C_Line.class)
+                {
+                    ind=0;
+                    int indl=0;
+                    int len= gestor.getGame().getLManager().getCurrent().getLen();
+                    while(indl!=len)
+                    {
+                        Bullet b= gestor.getDatos().getSet().getBull();
+                        if(b.getBullx()<temp.getX()+64&& b.getBullx()+24>temp.getX()
+                           && b.getBully()<temp.getY()+64&&b.getBully()+24> temp.getY())
+                        {
+                            gestor.getGame().getLManager().getCurrent().eliminate(ind);
+                            set.getBull().chnCond();
+                            set.getBull().setBully(Navy);
+                            gestor.getGame().chanCond();
+                            gestor.getGame().adder();
+                            break;
+                        }
+                        temp=temp.getNext();
+                        indl++;
+                        ind++;
+                    }
+                } 
             }
             if(set.getBull().getCond()==0)
             {

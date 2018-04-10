@@ -37,23 +37,9 @@ public class BasicMove implements Runnable
         
         while(true)
         {
-         if(hilera.getClass()==Basic_Line.class||hilera.getClass()==A_Line.class||hilera.getClass()==C_Line.class)
+         if(hilera.getClass()==Basic_Line.class||hilera.getClass()==A_Line.class)
          {
-            Enemy temp=(Enemy) hilera.getHead();
-            int ind=0;
-            while(temp!=null)
-            {
-                Bullet b= gestor.getDatos().getSet().getBull();
-                if(b.getBullx()<temp.getX()+64&& b.getBullx()+24>temp.getX()
-                   && b.getBully()<temp.getY()+64&&b.getBully()+24> temp.getY())
-                {
-                    System.out.println("Killing");
-                    hilera.eliminate(ind);
-                    break;
-                }
-                temp=(Enemy) temp.getNext();
-                ++ind;
-            }
+            
             temp=hilera.getHead();
             if(temp!=null)
             {
@@ -64,7 +50,6 @@ public class BasicMove implements Runnable
             }
             if(gestor.getGame().getLManager().getCurrent().getHead()==null)
             {
-                System.out.println("-----------------NEXT ROUND----------------");
                 gestor.getGame().getLManager().nextLine();
                 gestor.getGame().updateScreen();
                 updateHil();
@@ -118,21 +103,6 @@ public class BasicMove implements Runnable
          else if(hilera.getClass()==B_Line.class)
          {
             ((B_Line)hilera).refine();
-            Enemy temp=(Enemy) hilera.getHead();
-            int ind=0;
-            while(temp!=null)
-            {
-                Bullet b= gestor.getDatos().getSet().getBull();
-                if(b.getBullx()<temp.getX()+64&& b.getBullx()+24>temp.getX()
-                   && b.getBully()<temp.getY()+64&&b.getBully()+24> temp.getY())
-                {
-                    System.out.println("Killing");
-                    hilera.eliminate(ind);
-                    break;
-                }
-                temp=(Enemy) temp.getNext();
-                ++ind;
-            }
             temp=hilera.getHead();
             if(temp!=null)
             {
@@ -143,7 +113,6 @@ public class BasicMove implements Runnable
             }
             if(gestor.getGame().getLManager().getCurrent().getHead()==null)
             {
-                System.out.println("-----------------NEXT ROUND----------------");
                 gestor.getGame().getLManager().nextLine();
                 gestor.getGame().updateScreen();
                 updateHil();
@@ -204,6 +173,64 @@ public class BasicMove implements Runnable
                 e.printStackTrace();
             }
          }
+         else if(hilera.getClass()==C_Line.class)
+         {
+           if(gestor.getGame().getLManager().getCurrent().getHead()==null)
+            {
+                gestor.getGame().getLManager().nextLine();
+                gestor.getGame().updateScreen();
+                updateHil();
+            }
+            else if(((C_Line)hilera).getTail().getX()<=10)
+            {
+                int ind=0;
+                int len=hilera.getLen();
+                temp= hilera.getHead();
+                boolean flag2=false;
+                while(ind!=len)
+                {
+                    temp.chnDir();
+                    temp.chnX();
+                    temp.chnY();
+                    temp=temp.getNext();
+                    ind++;
+                }
+            }
+            else if(hilera.getHead().getX()>=hilera.getHead().getSup())
+            {
+                temp=hilera.getHead();
+                int ind=0;
+                int len=hilera.getLen();
+                while(ind!=len)
+                {
+                    temp.chnDir();
+                    temp.chnX();
+                    temp.chnY();
+                    temp=temp.getNext();
+                    ind++;
+                }
+            }
+            else
+            {
+                temp=hilera.getHead();
+                int ind=0;
+                int len=hilera.getLen();
+                while(ind!=len)
+                {
+                    temp.chnX();
+                    temp=temp.getNext();
+                    ind++;
+                }  
+            }
+        try {
+            updateHil();
+            Thread.sleep(gestor.getGame().getLManager().getCurrent().getHead().getSpeed());
+            } 
+        catch (Throwable e) 
+            {
+                e.printStackTrace();
+            }
+         }
          else
          {
              try
@@ -223,13 +250,11 @@ public class BasicMove implements Runnable
     }
     public void chnBoss(Line h)
     {
-        System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");   
         Enemy temp=h.getHead();
         Enemy temp2=h.getHead();
         int ind=0;
         while(temp!=null)
         {
-            System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
             if(temp.isBoss())
             {
                 break;
@@ -241,7 +266,6 @@ public class BasicMove implements Runnable
             }
         }
         Random r= new Random();
-        System.out.println(h.getLen());
         int indr=r.nextInt(h.getLen());
         int ind2=0;
         while(ind==indr)
@@ -250,7 +274,6 @@ public class BasicMove implements Runnable
         } 
         while(ind2!=indr)
         {
-            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
             temp2=temp2.getNext();
             ind2++;
         }

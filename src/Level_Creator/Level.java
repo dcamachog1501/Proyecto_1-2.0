@@ -62,7 +62,7 @@ public class Level
         else if(current>=3)
         {
           Random r= new Random();
-          int rnd=r.nextInt(3);
+          int rnd=r.nextInt(4);
           if(rnd==0)
           {
              l=GUI.buildHilera(this.basic, this.gestor,this.current);
@@ -75,10 +75,10 @@ public class Level
           {
               l=GUI.buildHilera(this.btype,this.gestor,this.current);
           }
-//          else if(rnd==3)
-//          {
-//              l=GUI.buildHilera(this.ctype,this.gestor,this.current);
-//          }
+          else if(rnd==3)
+          {
+              l=GUI.buildHilera(this.ctype,this.gestor,this.current);
+          }
           
         }
         return l;

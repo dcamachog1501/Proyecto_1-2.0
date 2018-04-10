@@ -155,14 +155,17 @@ public class C_Line implements Line {
     @Override
     public void Render(Graphics g, Canvas c) 
     {
-       Enemy temp=this.Head;
-       while(temp!=null)
+       Enemy temp=this.getHead();
+       int ind=0;
+       int len=this.getLen();
+       
+       while(ind!=len)
        {
            g.setFont(new Font("Helvetica",Font.BOLD,30));
            g.drawString(Integer.toString(temp.getHealth()),(temp.getX()+20),(temp.getY()-10));
            g.drawImage(temp.getFace(),temp.getX(),temp.getY(),c);
-           temp=(Enemy) temp.getNext();
-           
+           temp=temp.getNext();
+           ind++; 
        }
     }
     @Override
@@ -216,7 +219,165 @@ public class C_Line implements Line {
     @Override
     public void eliminate(int x) 
     {
-        
+       Enemy temp= this.getHead();
+       int ind=0;
+       int indr=0;
+       int lenl=this.getLen();
+       while(true)
+       {
+           if(x==0)
+           {
+               if(temp.getHealth()==1)
+               {
+                   if(temp.isBoss())
+                   {
+                       gestor.getGame().addMarc(temp.getPunt());
+                       gestor.getGame().updateMarcs();
+                       //this.destroy();
+                       break;
+                   }
+                   else
+                   {
+                    this.Head=temp.getNext();
+                    this.Tail.setNext(this.Head);
+                    gestor.getGame().addMarc(temp.getPunt());
+                    gestor.getGame().updateMarcs();
+                    temp=this.Head;
+                    this.len-=1;
+                    ind=0;
+                    int indl=0;
+                    int len=this.len;
+                    while(indl!=len)
+                    {
+                      if(ind<x)
+                      {
+                          temp.newx(-50);
+                          temp=temp.getNext();
+                          ind++;
+                          indl++;
+                      }
+                      else
+                      {
+                          temp.newx(50);
+                          temp=temp.getNext();
+                          ind++;
+                          indl++;
+                      }
+                    }
+                    break;
+                   }
+               }
+           
+               else
+               {
+                    temp.chnHealth(1);
+                    break;
+               }
+           }
+           else if(ind+1==x)
+           {
+               if(temp.getNext().getNext().getX()==this.Head.getX())
+               {
+                   if(temp.getNext().getHealth()==1)
+                   {
+                    if(temp.getNext().isBoss())
+                    {
+                        gestor.getGame().addMarc(temp.getNext().getPunt());
+                        gestor.getGame().updateMarcs();
+                        //this.destroy();
+                        break;
+                    }
+
+                    else
+                    {
+                     gestor.getGame().addMarc(temp.getNext().getPunt());
+                     gestor.getGame().updateMarcs();
+                     this.Tail=temp;
+                     this.Tail.setNext(this.Head);
+                     temp=this.Head;
+                     this.len-=1;
+                     int indl=0;
+                     int len=this.getLen();
+                     ind=0;
+                     while(indl!=len)
+                        {
+                          if(ind<x)
+                          {
+                              temp.newx(-50);
+                              temp=temp.getNext();
+                              ind++;
+                              indl++;
+                          }
+                          else
+                          {
+                              temp.newx(50);
+                              temp=temp.getNext();
+                              ind++;
+                              indl++;
+                          }
+                        }
+                     break;
+                    }
+                   }
+                   else
+                   {
+                       temp.getNext().chnHealth(1);
+                       break;
+                   }
+               }
+               else if(temp.getNext().getHealth()==1)
+               {
+                   if(temp.getNext().isBoss())
+                   {
+                       gestor.getGame().addMarc(temp.getNext().getPunt());
+                       gestor.getGame().updateMarcs();
+                       //this.destroy();
+                       break;
+                   }
+                   else
+                   {
+                    gestor.getGame().addMarc(temp.getNext().getPunt());
+                    gestor.getGame().updateMarcs();
+                    temp.setNext(temp.getNext().getNext());
+                    temp=this.Head;
+                    this.len-=1;
+                    int indl=0;
+                    int len=this.getLen();
+                    ind=0;
+                    while(indl!=len)
+                    {
+                      if(ind<x)
+                      {
+                          temp.newx(-50);
+                          temp=temp.getNext();
+                          ind++;
+                          indl++;
+                      }
+                      else
+                      {
+                          temp.newx(50);
+                          //temp.setInf(temp.getInf()+50);
+                          temp=temp.getNext();
+                          ind++;
+                          indl++;
+                      }
+                    }
+                    break;
+                   }
+               }
+           
+               else
+               {
+                    temp.getNext().chnHealth(1);
+                    break;
+               }
+           }
+           else
+           {
+           ind++;
+           temp=temp.getNext();
+           }
+       }
     }
 
     @Override
@@ -260,5 +421,8 @@ public class C_Line implements Line {
     {
         return this.len;
     }
-    
+    public Enemy getTail()
+    {
+        return this.Tail;
+    }
 }
