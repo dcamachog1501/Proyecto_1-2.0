@@ -29,13 +29,13 @@ public class Type_A implements Enemy
    private int lvl;
    private Boolean Boss;
    @Override
-   public void Init(int x, int y,int sup,int dir, Gestor2 gest, int lvl)
+   public void Init(int x, int y,int sup,int dir, Gestor2 gest, int lvl,int h)
    {
       this.lvl=lvl;
       setGest(gest);
       setType();
       setFace();
-      setHealth();
+      setHealth(h);
       setDir(dir);
       setSup(sup);
       setSpeed();
@@ -57,16 +57,9 @@ public class Type_A implements Enemy
     }
 
     @Override
-    public void setHealth() 
+    public void setHealth(int h) 
     {
-         if(lvl<=3)
-        {
-            this.health=2;
-        }
-        else if(lvl>3)
-        {
-            this.health=3;
-        }
+        this.health=h;
 
     }
 

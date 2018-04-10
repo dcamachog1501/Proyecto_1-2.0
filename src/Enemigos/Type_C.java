@@ -41,20 +41,9 @@ public class Type_C implements Enemy
     }
 
     @Override
-    public void setHealth() 
+    public void setHealth(int h) 
     {
-        if(lvl<2)
-        {
-            this.health=2;
-        }
-        else if(lvl>2 && lvl<7)
-        {
-            this.health=3;
-        }
-        else if(lvl>=7)
-        {
-            this.health=4;
-        }
+        this.health=h;
     }
 
     @Override
@@ -164,13 +153,13 @@ public class Type_C implements Enemy
     }
 
     @Override
-    public void Init(int x, int y, int sup,int dir,Gestor2 gest, int lvl) 
+    public void Init(int x, int y, int sup,int dir,Gestor2 gest, int lvl, int h) 
     {
       this.lvl=lvl;
       setGest(gest);
       setType();
       setFace();
-      setHealth();
+      setHealth(h);
       setDir(dir);
       setSup(sup);
       setSpeed();

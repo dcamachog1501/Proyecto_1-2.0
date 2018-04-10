@@ -8,6 +8,7 @@ import Hileras.A_Line;
 import Hileras.B_Line;
 import Hileras.Basic_Line;
 import Hileras.C_Line;
+import Hileras.D_Line;
 import Hileras.Line;
 import Ventanas.Gestor2;
 import java.util.Random;
@@ -182,6 +183,64 @@ public class BasicMove implements Runnable
                 updateHil();
             }
             else if(((C_Line)hilera).getTail().getX()<=10)
+            {
+                int ind=0;
+                int len=hilera.getLen();
+                temp= hilera.getHead();
+                boolean flag2=false;
+                while(ind!=len)
+                {
+                    temp.chnDir();
+                    temp.chnX();
+                    temp.chnY();
+                    temp=temp.getNext();
+                    ind++;
+                }
+            }
+            else if(hilera.getHead().getX()>=hilera.getHead().getSup())
+            {
+                temp=hilera.getHead();
+                int ind=0;
+                int len=hilera.getLen();
+                while(ind!=len)
+                {
+                    temp.chnDir();
+                    temp.chnX();
+                    temp.chnY();
+                    temp=temp.getNext();
+                    ind++;
+                }
+            }
+            else
+            {
+                temp=hilera.getHead();
+                int ind=0;
+                int len=hilera.getLen();
+                while(ind!=len)
+                {
+                    temp.chnX();
+                    temp=temp.getNext();
+                    ind++;
+                }  
+            }
+        try {
+            updateHil();
+            Thread.sleep(gestor.getGame().getLManager().getCurrent().getHead().getSpeed());
+            } 
+        catch (Throwable e) 
+            {
+                e.printStackTrace();
+            }
+         }
+         else if(hilera.getClass()==D_Line.class)
+         {
+             if(gestor.getGame().getLManager().getCurrent().getLen()==0)
+            {
+                gestor.getGame().getLManager().nextLine();
+                gestor.getGame().updateScreen();
+                updateHil();
+            }
+            else if(((D_Line)hilera).getTail().getX()<=10)
             {
                 int ind=0;
                 int len=hilera.getLen();

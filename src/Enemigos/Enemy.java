@@ -16,7 +16,7 @@ public interface Enemy
 {
     public void setType();
     public void setFace();
-    public void setHealth();
+    public void setHealth(int h);
     public void setDir(int dir);
     public void setNext(Enemy enm);
     public void setSup(int sup);
@@ -33,7 +33,7 @@ public interface Enemy
     public void chnY();
     public void chnDir();
     public int getPunt();  
-    public void Init(int x,int y,int sup,int dir, Gestor2 gest,int lvl);
+    public void Init(int x,int y,int sup,int dir, Gestor2 gest,int lvl,int h);
     public int getHealth();
     public void chnHealth(int x);
     public int getSpeed();

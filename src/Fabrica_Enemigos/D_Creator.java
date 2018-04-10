@@ -5,21 +5,23 @@
  */
 package Fabrica_Enemigos;
 
-import Enemigos.Type_A;
 import Enemigos.Enemy;
+import Enemigos.Type_D;
 import Ventanas.Gestor2;
 
 /**
  *
- * @author dcama
+ * @author Daniel Camacho
  */
-public class A_Creator implements Enemy_Creator
+public class D_Creator implements Enemy_Creator
 {
+
     @Override
-    public Enemy createEnemy(int x, int y, int sup,int dir,Gestor2 gest, int lvl, int h ) 
+    public Enemy createEnemy(int x, int y, int sup, int dir, Gestor2 gest, int lvl, int h) 
     {
-        Type_A enm= new Type_A();
+        Type_D enm= new Type_D();
         enm.Init(x,y,sup,dir,gest,lvl,h);
         return enm;
-    } 
+    }
+    
 }

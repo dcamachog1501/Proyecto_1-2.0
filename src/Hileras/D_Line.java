@@ -8,10 +8,9 @@ package Hileras;
 import Enemigos.Boss;
 import Enemigos.Enemy;
 import Enemigos.Enemy_GUI;
-import Fabrica_Enemigos.A_Creator;
-import Fabrica_Enemigos.B_Creator;
 import Fabrica_Enemigos.Boss_Creator;
 import Fabrica_Enemigos.C_Creator;
+import Fabrica_Enemigos.D_Creator;
 import Threads.BasicMove;
 import Ventanas.Gestor2;
 import java.awt.Canvas;
@@ -25,7 +24,8 @@ import java.util.Random;
  *
  * @author Daniel Camacho
  */
-public class C_Line implements Line {
+public class D_Line implements Line
+{
     private Enemy Head;
     private Enemy Tail;
     private int len;
@@ -33,7 +33,7 @@ public class C_Line implements Line {
     private int enmx;
     private int enmy;
     private int sup;
-    private C_Creator fabrica;
+    private D_Creator fabrica;
     private Boss_Creator fabricab;
     private Image current;
     private Gestor2 gestor;
@@ -46,10 +46,6 @@ public class C_Line implements Line {
     public void setHead() 
     {
         this.Head=null;
-    }
-    public void setTail()
-    {
-        this.Tail=null;
     }
 
     @Override
@@ -85,7 +81,7 @@ public class C_Line implements Line {
     @Override
     public void setCurrent() 
     {
-     this.current=Toolkit.getDefaultToolkit().getImage("Resources/Current Icons/ClaseC.png");
+        this.current=Toolkit.getDefaultToolkit().getImage("Resources/Current Icons/ClaseD.png");
     }
 
     @Override
@@ -100,10 +96,11 @@ public class C_Line implements Line {
             return false;
         }
     }
+
     @Override
     public void adder(Enemy enm) 
     {
-      if(isEmpty()==true)
+        if(isEmpty()==true)
         {
             this.Head=enm;
             this.Tail=enm;
@@ -137,20 +134,27 @@ public class C_Line implements Line {
       int ind=r.nextInt(7);
       while(len<lenmax)
       {
+          Random rnd= new Random();
+          int rh= rnd.nextInt(7);
+          while(rh==0)
+          {
+              rh=rnd.nextInt(7);
+          }
           if(len==ind)
           {
-          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,3);
+          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,rh);
           enm.setPunt();
           this.adder(enm);
           enmx-=100;
           }
           else
           {
-          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,3);
+          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,rh);
           this.adder(enm);
           enmx-=100;
           }
       }
+      bubbleSort();
     }
 
     @Override
@@ -169,16 +173,19 @@ public class C_Line implements Line {
            ind++; 
        }
     }
+
     @Override
     public int getEnmy() 
     {
         return this.enmy;
     }
+
     @Override
     public int getEnmx() 
     {
         return this.enmx;
     }
+
     @Override
     public Enemy getHead() 
     {
@@ -212,7 +219,7 @@ public class C_Line implements Line {
     @Override
     public void setFactory() 
     {
-        this.fabrica=new C_Creator();
+        this.fabrica=new D_Creator();
         this.fabricab= new Boss_Creator();
         this.GUI= new Enemy_GUI();
     }
@@ -220,7 +227,7 @@ public class C_Line implements Line {
     @Override
     public void eliminate(int x) 
     {
-       Enemy temp= this.getHead();
+         Enemy temp= this.getHead();
        int ind=0;
        int indr=0;
        int lenl=this.getLen();
@@ -495,7 +502,7 @@ public class C_Line implements Line {
     @Override
     public void setType() 
     {
-        this.type="Type C";
+        this.type="Type D";
     }
 
     @Override
@@ -566,5 +573,112 @@ public class C_Line implements Line {
             ind++;
         }
        }
+    }
+    public void bubbleSort()
+    {
+        boolean changes=false;
+        int ind=0;
+        Enemy temp=this.Head;
+        while(true)
+        {
+          int lenl=this.len;
+          if (ind==0)
+          {
+            if(temp.getHealth()>temp.getNext().getHealth())
+            {
+                Enemy temp2=temp.getNext();
+                int Navx=temp.getX();
+                int Navx2=temp2.getX();
+                temp.setNext(temp2.getNext());
+                temp2.setNext(temp);
+                temp.setX(Navx2);
+                temp2.setX(Navx);
+                this.Head=temp2;
+                this.Tail.setNext(this.Head);
+                changes=true;
+                ind++;
+            }
+            else
+            {
+                temp=temp.getNext();
+                ind++;
+            }
+          }
+          else if(ind==lenl-2)
+          {
+            if(temp.getHealth()>temp.getNext().getHealth())
+            {
+                Enemy temp2=temp.getNext();
+                int Navx=temp.getX();
+                int Navx2=temp2.getX();
+                Enemy temp3=this.Head;
+                while(true)
+                {
+                    System.out.println("Ciclo bubbleSortXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    if(temp3.getNext().getX()==temp.getX())
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        temp3=temp3.getNext();
+                    }
+                }
+                temp.setNext(temp2.getNext());
+                temp2.setNext(temp);
+                temp3.setNext(temp2);
+                temp.setX(Navx2);
+                temp2.setX(Navx);
+                changes=true;
+                this.Tail=temp;
+                Tail.setNext(this.Head);
+                break;
+            } 
+            else
+            {
+                temp=temp.getNext();
+                break;
+            }
+          }
+          else
+          {
+            if(temp.getHealth()>temp.getNext().getHealth())
+            {
+                Enemy temp2=temp.getNext();
+                int Navx=temp.getX();
+                int Navx2=temp2.getX();
+                Enemy temp3=this.Head;
+                while(true)
+                {
+                    System.out.println("Ciclo bubbleSortXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    if(temp3.getNext().getX()==temp.getX())
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        temp3=temp3.getNext();
+                    }
+                }
+                temp.setNext(temp2.getNext());
+                temp2.setNext(temp);
+                temp3.setNext(temp2);
+                temp.setX(Navx2);
+                temp2.setX(Navx);
+                changes=true;
+                ind++;
+                
+            }
+            else
+            {
+                temp=temp.getNext();
+                ind++;
+            }
+          }
+        }
+        if(changes==true)
+        {
+            bubbleSort();
+        }
     }
 }

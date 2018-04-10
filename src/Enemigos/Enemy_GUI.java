@@ -15,9 +15,9 @@ import Ventanas.Gestor2;
  */
 public class Enemy_GUI 
 {
-    public Enemy buildEnemy(Enemy_Creator enemyfactory, int x, int y,int sup,int dir,Gestor2 gest,int lvl)
+    public Enemy buildEnemy(Enemy_Creator enemyfactory, int x, int y,int sup,int dir,Gestor2 gest,int lvl, int h)
     {
-        Enemy enm= enemyfactory.createEnemy(x, y, sup,dir,gest,lvl);
+        Enemy enm= enemyfactory.createEnemy(x, y, sup,dir,gest,lvl,h);
         return enm;
     }
 }

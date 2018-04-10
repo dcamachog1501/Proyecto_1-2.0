@@ -13,49 +13,31 @@ import java.awt.Toolkit;
  *
  * @author dcama
  */
-public class Boss implements Enemy 
+public class Type_D implements Enemy
 {
-   private Enemy next;
-   private Enemy prev;
-   private Image face;
-   private int enx;
-   private int eny;
-   private int health;
-   private int dir=1;
-   private int sup;
-   private int punt;
-   private String type;
-   private int speed;
-   private Gestor2 gestor;
-   private int lvl;
-   private Boolean Boss;
-   
-   @Override
-   public void Init(int x, int y,int sup,int dir,Gestor2 gest,int lvl, int h)
-   {
-      setType();
-      setFace();
-      setHealth(h);
-      setDir(dir);
-      setSup(sup);
-      setSpeed();
-      setPunt();
-      setX(x);
-      setY(y);
-      setGest(gest);
-      this.lvl=lvl;
-      this.Boss=true;
-   }
+    private Enemy next;
+    private Image face;
+    private int enx;
+    private int eny;
+    private int health;
+    private int dir=1;
+    private int sup;
+    private int punt;
+    private String type;
+    private int speed;
+    private Gestor2 gestor;
+    private int lvl;
+    private Boolean Boss;
     @Override
     public void setType() 
     {
-        this.type="Boss";
+       this.type="Type D";
     }
 
     @Override
     public void setFace() 
     {
-        this.face=Toolkit.getDefaultToolkit().getImage("Resources/Enemigos/Boss.png");
+        this.face=Toolkit.getDefaultToolkit().getImage("Resources/Enemigos/ClaseD.png");
     }
 
     @Override
@@ -75,10 +57,7 @@ public class Boss implements Enemy
     {
         this.next=enm;
     }
-    public void setPrev(Enemy enm)
-    {
-        this.prev=enm;
-    }
+
     @Override
     public void setSup(int sup) 
     {
@@ -94,7 +73,7 @@ public class Boss implements Enemy
     @Override
     public void setPunt() 
     {
-        this.punt=1000;
+        this.punt=150;
     }
 
     @Override
@@ -108,35 +87,41 @@ public class Boss implements Enemy
     {
         this.eny=y;
     }
-   @Override
-     public int getSup()
+
+    @Override
+    public int getSup() 
     {
-        return sup;
+        return this.sup;
     }
-   @Override
-    public Enemy getNext()
+
+    @Override
+    public Enemy getNext() 
     {
         return this.next;
     }
-   @Override
-    public int getX()
+
+    @Override
+    public int getX() 
     {
         return this.enx;
     }
-   @Override
-    public int getY()
+
+    @Override
+    public int getY() 
     {
         return this.eny;
     }
-   @Override
-    public Image getFace()
+
+    @Override
+    public Image getFace() 
     {
         return this.face;
     }
-   @Override
-    public void chnX()
+
+    @Override
+    public void chnX() 
     {
-        if(dir==1)
+         if(dir==1)
         {
           this.enx-=25;
         }
@@ -145,13 +130,15 @@ public class Boss implements Enemy
             this.enx+=25;
         }
     }
-   @Override
-    public void chnY()
+
+    @Override
+    public void chnY() 
     {
         this.eny+=25;
     }
-   @Override
-    public void chnDir()
+
+    @Override
+    public void chnDir() 
     {
         if(dir==1)
         {
@@ -162,10 +149,28 @@ public class Boss implements Enemy
             dir=1;
         }
     }
-   @Override
-    public int getPunt()
+
+    @Override
+    public int getPunt() 
     {
-       return punt; 
+        return this.punt;
+    }
+
+    @Override
+    public void Init(int x, int y, int sup, int dir, Gestor2 gest, int lvl, int h) 
+    {
+      this.lvl=lvl;
+      setGest(gest);
+      setType();
+      setFace();
+      setHealth(h);
+      setDir(dir);
+      setSup(sup);
+      setSpeed();
+      setPunt();
+      setX(x);
+      setY(y);
+      this.Boss=false;
     }
 
     @Override
@@ -177,13 +182,15 @@ public class Boss implements Enemy
     @Override
     public void chnHealth(int x) 
     {
-        this.health-=x;
+        this.health=this.health-x;
     }
+
     @Override
-    public int getSpeed()
+    public int getSpeed() 
     {
         return this.speed;
     }
+
     @Override
     public void setGest(Gestor2 gest) 
     {
@@ -199,11 +206,7 @@ public class Boss implements Enemy
     @Override
     public void newx(int x) 
     {
-        this.enx+=x;    
-    }
-    public Enemy getPrev()
-    {
-        return this.prev;
+        this.enx+=x; 
     }
 
     @Override
@@ -211,4 +214,5 @@ public class Boss implements Enemy
     {
         return this.dir;
     }
+    
 }

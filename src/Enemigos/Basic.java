@@ -29,13 +29,13 @@ public class Basic implements Enemy
    private Boolean Boss;
    
    @Override
-   public void Init(int x, int y,int sup,int dir,Gestor2 gest,int lvl)
+   public void Init(int x, int y,int sup,int dir,Gestor2 gest,int lvl,int h)
    {
       this.lvl=lvl;
       setGest(gest);
       setType();
       setFace();
-      setHealth();
+      setHealth(h);
       setDir(dir);
       setSup(sup);
       setSpeed();
@@ -57,16 +57,9 @@ public class Basic implements Enemy
     }
 
     @Override
-    public void setHealth() 
+    public void setHealth(int h) 
     {
-        if(this.lvl<2)
-        {
-            this.health=1;
-        }
-        else
-        {
-            this.health=2;
-        }
+        this.health=h;
     }
 
     @Override

@@ -6,15 +6,12 @@
 package Threads;
 
 import Componentes_Jugador.Bullet;
-import Enemigos.Basic;
 import Enemigos.Enemy;
-import Enemigos.Type_A;
-import Enemigos.Type_B;
-import Enemigos.Type_C;
 import Hileras.A_Line;
 import Hileras.B_Line;
 import Hileras.Basic_Line;
 import Hileras.C_Line;
+import Hileras.D_Line;
 import Ventanas.Gestor2;
 import java.awt.event.KeyListener;
 
@@ -78,7 +75,7 @@ public class Shoot implements Runnable
                         ++ind;
                     }
                 }
-                if(gestor.getGame().getLManager().getCurrent().getClass()==C_Line.class)
+                if(gestor.getGame().getLManager().getCurrent().getClass()==C_Line.class||gestor.getGame().getLManager().getCurrent().getClass()==D_Line.class)
                 {
                     ind=0;
                     int indl=0;

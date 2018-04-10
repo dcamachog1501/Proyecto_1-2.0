@@ -108,7 +108,7 @@ public class Basic_Line implements Line
     {
       while(len<lenmax)
       {
-          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy, this.sup,1,this.gestor,this.lvl);
+          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy, this.sup,1,this.gestor,this.lvl,1);
           this.adder(enm);
           enmx-=100;
           inf-=100;
