@@ -72,7 +72,7 @@ public class Type_C implements Enemy
     @Override
     public void setPunt() 
     {
-        this.punt=300;
+        this.punt=50;
     }
 
     @Override
@@ -131,7 +131,7 @@ public class Type_C implements Enemy
     @Override
     public void chnY() 
     {
-        this.eny+=25;
+        this.eny+=50;
     }
 
     @Override

@@ -154,13 +154,14 @@ public class B_Line implements Line
           {
           Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,3);
           enm.setPunt();
+          ((Boss)enm).giveHealth();
           this.adder(enm);
           enmx-=100;
           inf-=100;
           }
           else
           {
-          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,3);
+          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,giveHealth());
           this.adder(enm);
           enmx-=100;
           inf-=100;
@@ -681,4 +682,21 @@ public class B_Line implements Line
             }
         }
     }    
+
+    @Override
+    public int giveHealth() 
+    {
+        if(this.lvl<2)
+        {
+            return 3;
+        }
+        else if(this.lvl>=2 && this.lvl<7)
+        {
+            return 4;
+        }
+        else
+        {
+            return 5;
+        }
+    }
 }

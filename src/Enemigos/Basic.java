@@ -82,14 +82,9 @@ public class Basic implements Enemy
     @Override
     public void setSpeed() 
     {
-        if(lvl<2)
-        {
-         this.speed=150;
-        }
-        else
-        {
-         this.speed=100;
-        }
+        
+         this.speed=50;
+       
     }
 
     @Override
@@ -149,7 +144,7 @@ public class Basic implements Enemy
    @Override
     public void chnY()
     {
-        this.eny+=25;
+        this.eny+=50;
     }
    @Override
     public void chnDir()

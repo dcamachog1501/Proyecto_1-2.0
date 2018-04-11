@@ -73,7 +73,7 @@ public class C_Line implements Line {
     @Override
     public void setEnmy() 
     {
-        this.enmy=200;
+        this.enmy=300;
     }
 
     @Override
@@ -141,6 +141,7 @@ public class C_Line implements Line {
           {
           Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,3);
           enm.setPunt();
+          ((Boss)enm).giveHealth();
           this.adder(enm);
           enmx-=100;
           }
@@ -566,5 +567,22 @@ public class C_Line implements Line {
             ind++;
         }
        }
+    }
+
+    @Override
+    public int giveHealth() 
+    {
+        if(this.lvl<7)
+        {
+            return 1;
+        }
+        else if(this.lvl>=7 && this.lvl<9)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
+        }
     }
 }

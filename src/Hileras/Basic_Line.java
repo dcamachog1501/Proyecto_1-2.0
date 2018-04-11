@@ -108,7 +108,7 @@ public class Basic_Line implements Line
     {
       while(len<lenmax)
       {
-          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy, this.sup,1,this.gestor,this.lvl,1);
+          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy, this.sup,1,this.gestor,this.lvl,giveHealth());
           this.adder(enm);
           enmx-=100;
           inf-=100;
@@ -329,6 +329,23 @@ public class Basic_Line implements Line
     public int getLen() 
     {
         return this.len;
+    }
+
+    @Override
+    public int giveHealth() 
+    {
+        if(this.lvl<2)
+        {
+            return 1;
+        }
+        else if(lvl>=2 && lvl<7)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
+        }
     }
 
 }

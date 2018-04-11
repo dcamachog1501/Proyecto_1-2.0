@@ -94,7 +94,7 @@ public class Boss implements Enemy
     @Override
     public void setPunt() 
     {
-        this.punt=1000;
+        this.punt=500;
     }
 
     @Override
@@ -148,7 +148,7 @@ public class Boss implements Enemy
    @Override
     public void chnY()
     {
-        this.eny+=25;
+        this.eny+=50;
     }
    @Override
     public void chnDir()
@@ -210,5 +210,20 @@ public class Boss implements Enemy
     public int getDir() 
     {
         return this.dir;
+    }
+    public void giveHealth()
+    {
+        if(this.lvl<2)
+        {
+            this.health=3;
+        }
+        else if(lvl>=2 && lvl<7)
+        {
+            this.health=4;
+        }
+        else
+        {
+            this.health=5;
+        }
     }
 }

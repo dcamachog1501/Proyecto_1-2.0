@@ -52,7 +52,7 @@ public class Level
         if(current>=0 && current<3)
         {
           Random r= new Random();
-          int rnd=r.nextInt(2);
+          int rnd=r.nextInt(3);
           if(rnd==0)
           {
              l=GUI.buildHilera(this.basic, this.gestor,this.current);
@@ -61,28 +61,32 @@ public class Level
           {
              l=GUI.buildHilera(this.atype,this.gestor,this.current);
           }
+          else if (rnd==2)
+          {
+              l=GUI.buildHilera(this.btype,this.gestor,this.current);
+          }
         }
         else if(current>=3)
         {
           Random r= new Random();
-          int rnd=r.nextInt(1);
-//          if(rnd==0)
-//          {
-//             l=GUI.buildHilera(this.basic, this.gestor,this.current);
-//          }
-//          else if(rnd==1)
-//          {
-//             l=GUI.buildHilera(this.atype,this.gestor,this.current);
-//          }
-//          else if (rnd==2)
-//          {
-//              l=GUI.buildHilera(this.btype,this.gestor,this.current);
-//          }
-//          else if(rnd==3)
-//          {
-//              l=GUI.buildHilera(this.ctype,this.gestor,this.current);
-//          }
+          int rnd=r.nextInt(5);
           if(rnd==0)
+          {
+             l=GUI.buildHilera(this.basic, this.gestor,this.current);
+          }
+          else if(rnd==1)
+          {
+             l=GUI.buildHilera(this.atype,this.gestor,this.current);
+          }
+          else if (rnd==2)
+          {
+              l=GUI.buildHilera(this.btype,this.gestor,this.current);
+          }
+          else if(rnd==3)
+          {
+              l=GUI.buildHilera(this.ctype,this.gestor,this.current);
+          }
+          else if(rnd==4)
           {
               l=GUI.buildHilera(this.dtype,this.gestor,this.current);
           }

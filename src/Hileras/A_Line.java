@@ -5,6 +5,7 @@
  */
 package Hileras;
 
+import Enemigos.Boss;
 import Enemigos.Enemy;
 import Enemigos.Enemy;
 import Enemigos.Enemy_GUI;
@@ -124,13 +125,13 @@ public class A_Line implements Line
           if(len==ind)
           {
           Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,3);
-          enm.setPunt();
+          ((Boss)enm).giveHealth();
           this.adder(enm);
           enmx-=100;
           }
           else
           {
-          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,2);
+          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,giveHealth());
           this.adder(enm);
           enmx-=100;
           }
@@ -414,6 +415,19 @@ public class A_Line implements Line
                 temp=temp.getNext();
             }
             } 
+        }
+    }
+
+    @Override
+    public int giveHealth() 
+    {
+        if(this.lvl<2)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
         }
     }
 }

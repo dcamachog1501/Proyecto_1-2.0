@@ -72,13 +72,13 @@ public class Type_B implements Enemy
     @Override
     public void setSpeed() 
     {
-        this.speed=150;
+        this.speed=100;
     }
 
     @Override
     public void setPunt() 
     {
-        this.punt=200;
+        this.punt=100;
     }
 
     @Override
@@ -138,7 +138,7 @@ public class Type_B implements Enemy
     @Override
     public void chnY() 
     {
-         this.eny+=25;
+         this.eny+=50;
     }
 
     @Override

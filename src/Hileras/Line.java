@@ -42,4 +42,5 @@ public interface Line
     public void setType();
     public String getType();
     public int getLen();
+    public int giveHealth();
 }

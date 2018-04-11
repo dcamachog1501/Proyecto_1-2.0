@@ -69,7 +69,7 @@ public class D_Line implements Line
     @Override
     public void setEnmy() 
     {
-        this.enmy=200;
+        this.enmy=300;
     }
 
     @Override
@@ -134,22 +134,17 @@ public class D_Line implements Line
       int ind=r.nextInt(7);
       while(len<lenmax)
       {
-          Random rnd= new Random();
-          int rh= rnd.nextInt(7);
-          while(rh==0)
-          {
-              rh=rnd.nextInt(7);
-          }
           if(len==ind)
           {
-          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,rh);
+          Enemy enm=GUI.buildEnemy(fabricab,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,3);
           enm.setPunt();
+          ((Boss)enm).giveHealth();
           this.adder(enm);
           enmx-=100;
           }
           else
           {
-          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,rh);
+          Enemy enm=GUI.buildEnemy(fabrica,this.enmx,this.enmy,this.sup,1,this.gestor,this.lvl,giveHealth());
           this.adder(enm);
           enmx-=100;
           }
@@ -401,7 +396,6 @@ public class D_Line implements Line
                     temp.setNext(temp.getNext().getNext());
                     temp=this.Head;
                     this.len-=1;
-                    System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  "+this.len);
                     int indl=0;
                     int len=this.getLen();
                     ind=0;
@@ -532,6 +526,7 @@ public class D_Line implements Line
             {
                 Boss b=new Boss();
                 b.Init(this.Head.getX(),this.Head.getY(),this.Head.getSup(),this.Head.getDir(),gestor, lvl,3);
+                ((Boss)b).giveHealth();
                 b.setNext(this.Head.getNext());
                 this.Tail.setNext(b);
                 this.Head=b;
@@ -541,6 +536,7 @@ public class D_Line implements Line
             {
                 Boss b=new Boss();
                 b.Init(this.Head.getX(),this.Head.getY(),this.Head.getSup(),this.Head.getDir(),gestor, lvl,3);
+                ((Boss)b).giveHealth();
                 this.Tail=b;
                 this.Head=b;
                 b.setNext(b);
@@ -553,6 +549,7 @@ public class D_Line implements Line
             {
                 Boss b=new Boss();
                 b.Init(temp.getNext().getX(),temp.getNext().getY(),temp.getNext().getSup(),temp.getNext().getDir(),gestor, lvl,3);
+                ((Boss)b).giveHealth();
                 b.setNext(temp.getNext().getNext());
                 temp.setNext(b);
                 this.Tail=b;
@@ -562,6 +559,7 @@ public class D_Line implements Line
             {
                 Boss b=new Boss();
                 b.Init(temp.getNext().getX(), temp.getNext().getY(),temp.getNext().getSup(),temp.getNext().getDir(),gestor, lvl,3);
+                ((Boss)b).giveHealth();
                 b.setNext(temp.getNext().getNext());
                 temp.setNext(b);
                 break;
@@ -680,5 +678,17 @@ public class D_Line implements Line
         {
             bubbleSort();
         }
+    }
+
+    @Override
+    public int giveHealth() 
+    {
+       Random rnd= new Random();
+       int rh=0;
+       while(rh==0)
+          {
+              rh=rnd.nextInt(7);
+          }
+       return rh;
     }
 }
