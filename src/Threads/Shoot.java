@@ -12,6 +12,7 @@ import Hileras.B_Line;
 import Hileras.Basic_Line;
 import Hileras.C_Line;
 import Hileras.D_Line;
+import Hileras.E_Line;
 import Ventanas.Gestor2;
 import java.awt.event.KeyListener;
 
@@ -71,11 +72,11 @@ public class Shoot implements Runnable
                             gestor.getGame().adder();
                             break;
                         }
-                        temp=(Enemy) temp.getNext();
+                        temp=temp.getNext();
                         ++ind;
                     }
                 }
-                if(gestor.getGame().getLManager().getCurrent().getClass()==C_Line.class||gestor.getGame().getLManager().getCurrent().getClass()==D_Line.class)
+                if(gestor.getGame().getLManager().getCurrent().getClass()==C_Line.class||gestor.getGame().getLManager().getCurrent().getClass()==D_Line.class||gestor.getGame().getLManager().getCurrent().getClass()==E_Line.class)
                 {
                     ind=0;
                     int indl=0;

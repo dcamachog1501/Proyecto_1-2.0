@@ -10,6 +10,7 @@ import Fabrica_Hileras.B_Line_Creator;
 import Fabrica_Hileras.Basic_Line_Creator;
 import Fabrica_Hileras.C_Line_Creator;
 import Fabrica_Hileras.D_Line_Creator;
+import Fabrica_Hileras.E_Line_Creator;
 import Hileras.Hileras_GUI;
 import Hileras.Line;
 import Ventanas.Gestor2;
@@ -32,6 +33,7 @@ public class Level
     private B_Line_Creator btype;
     private C_Line_Creator ctype;
     private D_Line_Creator dtype;
+    private E_Line_Creator etype;
     public Level(int x,Gestor2 gest)
     {
       this.current=x;
@@ -45,6 +47,7 @@ public class Level
       this.btype=new B_Line_Creator();
       this.ctype= new C_Line_Creator();
       this.dtype= new D_Line_Creator();
+      this.etype= new E_Line_Creator();
     }
     public Line getLine()
     {
@@ -55,7 +58,7 @@ public class Level
           int rnd=r.nextInt(3);
           if(rnd==0)
           {
-             l=GUI.buildHilera(this.basic, this.gestor,this.current);
+           l=GUI.buildHilera(this.basic, this.gestor,this.current);
           }
           else if(rnd==1)
           {
@@ -69,7 +72,7 @@ public class Level
         else if(current>=3)
         {
           Random r= new Random();
-          int rnd=r.nextInt(5);
+          int rnd=r.nextInt(6);
           if(rnd==0)
           {
              l=GUI.buildHilera(this.basic, this.gestor,this.current);
@@ -89,6 +92,10 @@ public class Level
           else if(rnd==4)
           {
               l=GUI.buildHilera(this.dtype,this.gestor,this.current);
+          }
+          else if(rnd==5)
+          {
+              l=GUI.buildHilera(this.etype, this.gestor,this.current);
           }
         }
         return l;

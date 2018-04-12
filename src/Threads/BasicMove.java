@@ -2,16 +2,21 @@
 package Threads;
 
 import Componentes_Jugador.Bullet;
+import Enemigos.Boss;
 import Enemigos.Enemy;
 import Enemigos.Type_B;
+import Enemigos.Type_E;
 import Hileras.A_Line;
 import Hileras.B_Line;
 import Hileras.Basic_Line;
 import Hileras.C_Line;
 import Hileras.D_Line;
+import Hileras.E_Line;
 import Hileras.Line;
 import Ventanas.Gestor2;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Daniel Camacho 
@@ -22,6 +27,9 @@ public class BasicMove implements Runnable
     private Enemy temp;
     private Gestor2 gestor;
     private int cont;
+    private double ang=0;
+    private int inX;
+    private boolean cond;
     public BasicMove()
     {
         
@@ -31,6 +39,7 @@ public class BasicMove implements Runnable
         this.hilera=hilera;
         this.gestor=gest;
         this.cont=0;
+        this.cond=true;
     }
     @Override
     public void run() 
@@ -288,6 +297,43 @@ public class BasicMove implements Runnable
         catch (Throwable e) 
             {
                 e.printStackTrace();
+            }
+         }
+         else if(hilera.getClass()==E_Line.class)
+         {
+            if(gestor.getGame().getLManager().getCurrent().getLen()==0)
+            {
+                gestor.getGame().getLManager().nextLine();
+                gestor.getGame().updateScreen();
+                updateHil();
+            }
+            else
+            {
+                int ind=0;
+                int lenl=hilera.getLen();
+                Enemy temp=hilera.getHead();
+                while(ind!=lenl)
+                {
+                if(temp.getClass()==Type_E.class)
+                {
+                ((E_Line)hilera).rotate(ang,((Type_E)temp).getInX(),ind);
+                }
+                else if(temp.getClass()==Boss.class)
+                {
+                 ((E_Line)hilera).rotate(ang,((Boss)temp).getInX(),ind);
+                }
+                ind++;
+                temp=temp.getNext();
+                }
+                this.ang+=0.1;
+                try 
+                {
+                    Thread.sleep(30);
+                } 
+                catch (Exception e) 
+                {
+                    e.printStackTrace();
+                }
             }
          }
          else

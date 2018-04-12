@@ -6,15 +6,8 @@
 package Main;
 
 import Enemigos.Enemy;
-import Fabrica_Hileras.B_Line_Creator;
-import Hileras.Basic_Line;
-import Hileras.C_Line;
-import Hileras.Line;
-import Level_Creator.Level;
-import Level_Creator.Level_Creator;
-import Threads.Setup;
+import Hileras.E_Line;
 import Ventanas.Gestor2;
-import java.util.Random;
 
 /**
  *
@@ -29,7 +22,7 @@ public class Main
        Gestor2 g = new Gestor2();
        g.Init();
        g.gestInicial();
-//       C_Line c= new C_Line();
+//       E_Line c= new E_Line();
 //       c.Init(g, 5);
 //       c.createLine();
 //       Enemy temp=c.getHead();

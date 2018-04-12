@@ -221,7 +221,8 @@ public class B_Line implements Line
         this.setType();
         this.next=null;
         this.move=new BasicMove(this,gestor);
-        this.lvl=lvl;    }
+        this.lvl=lvl;    
+    }
 
     @Override
     public void setFactory() 
@@ -659,28 +660,8 @@ public class B_Line implements Line
     }
     public void destroy()
     {
-        Enemy temp= this.Head;
-        while(this.Head!=null)
-        {
-            if(this.Head.getNext()==null)
-            {
-                this.Head=null;
-                this.len=0;
-            }
-            if(temp.getNext()==null)
-            {
-                temp=null;
-            }
-            else if(temp.getNext().getNext()==null)
-            {
-                temp.setNext(null);
-                temp=this.Head;
-            }
-            else
-            {
-                temp=temp.getNext();
-            }
-        }
+        this.Head=null;
+        this.len=0;
     }    
 
     @Override

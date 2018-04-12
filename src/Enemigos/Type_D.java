@@ -11,7 +11,7 @@ import java.awt.Toolkit;
 
 /**
  *
- * @author dcama
+ * @author Daniel Camacho 
  */
 public class Type_D implements Enemy
 {

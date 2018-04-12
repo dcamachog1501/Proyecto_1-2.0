@@ -239,7 +239,6 @@ public class C_Line implements Line {
                     gestor.getGame().updateMarcs();
                     temp=this.Head;
                     this.len-=1;
-                    System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  "+this.len);
                     ind=0;
                     int indl=0;
                     int len=this.len;
