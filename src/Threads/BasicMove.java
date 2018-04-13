@@ -359,7 +359,7 @@ public class BasicMove implements Runnable
     }
     public void verify()
     {
-        if(hilera.getClass()==A_Line.class||hilera.getClass()==B_Line.class||hilera.getClass()==A_Line.class||hilera.getClass()==Basic_Line.class)
+        if(hilera.getClass()==A_Line.class||hilera.getClass()==B_Line.class||hilera.getClass()==Basic_Line.class)
         {
             Enemy temp=hilera.getHead();
             while(temp!=null)

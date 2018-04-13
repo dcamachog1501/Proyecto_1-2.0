@@ -5,6 +5,8 @@
  */
 package Ventanas;
 
+import Componentes_Jugador.Player;
+import Componentes_Jugador.Puntaje;
 import java.io.FileReader;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -40,6 +42,7 @@ public class Ventana_Estadisticas extends JFrame
     private Gestor2 gest;
     private Image back2;
     private FileReader reader;
+    private Puntaje leaderboards;
     public Ventana_Estadisticas()
     {
         
@@ -54,6 +57,7 @@ public class Ventana_Estadisticas extends JFrame
         this.fuentem=Fuente;
         this.gest=gest;
         this.back2=back2;
+        this.leaderboards=getMarc();
         Init();
     }
     public void Init() throws IOException
@@ -107,32 +111,37 @@ public class Ventana_Estadisticas extends JFrame
         Label3.setBounds(60,0,1000,100);
         Panel3.add(Label3);
 
-        JLabel Label4= new JLabel("1. "+ getMarc(0));
-        Label4.setFont(fuentem.deriveFont(Font.PLAIN, 40));
+        JLabel Label4= new JLabel("1. "+ leaderboards.getPos(0).getName()+" "+
+        leaderboards.getPos(0).getPunt());
+        Label4.setFont(fuentem.deriveFont(Font.PLAIN, 30));
         Label4.setForeground(Color.GREEN);
         Label4.setBounds(40,100,1000,100);
         Panel3.add(Label4);
 
-         JLabel Label5= new JLabel("2. "+getMarc(1));
-        Label5.setFont(fuentem.deriveFont(Font.PLAIN, 40));
+         JLabel Label5= new JLabel("2. "+ leaderboards.getPos(1).getName()+" "+
+        leaderboards.getPos(1).getPunt());
+        Label5.setFont(fuentem.deriveFont(Font.PLAIN, 30));
         Label5.setForeground(Color.GREEN);
         Label5.setBounds(40,200,1000,100);
         Panel3.add(Label5);
 
-         JLabel Label6= new JLabel("3. "+getMarc(2));
-        Label6.setFont(fuentem.deriveFont(Font.PLAIN, 40));
+         JLabel Label6= new JLabel("3. "+ leaderboards.getPos(2).getName()+" "+
+        leaderboards.getPos(2).getPunt());
+        Label6.setFont(fuentem.deriveFont(Font.PLAIN, 30));
         Label6.setForeground(Color.GREEN);
         Label6.setBounds(40,300,1000,100);
         Panel3.add(Label6);
 
-         JLabel Label7= new JLabel("4. "+getMarc(3));
-        Label7.setFont(fuentem.deriveFont(Font.PLAIN, 40));
+         JLabel Label7= new JLabel("4. "+ leaderboards.getPos(3).getName()+" "+
+        leaderboards.getPos(3).getPunt());
+        Label7.setFont(fuentem.deriveFont(Font.PLAIN, 30));
         Label7.setForeground(Color.GREEN);
         Label7.setBounds(40,400,1000,100);
         Panel3.add(Label7);
 
-         JLabel Label8= new JLabel("5. "+getMarc(4));
-        Label8.setFont(fuentem.deriveFont(Font.PLAIN, 40));
+         JLabel Label8= new JLabel("5. "+ leaderboards.getPos(4).getName()+" "+
+        leaderboards.getPos(4).getPunt());
+        Label8.setFont(fuentem.deriveFont(Font.PLAIN, 30));
         Label8.setForeground(Color.GREEN);
         Label8.setBounds(40,500,1000,100);
         Panel3.add(Label8);
@@ -190,21 +199,16 @@ public class Ventana_Estadisticas extends JFrame
         Back4.setBorder(BorderFactory.createMatteBorder(0,4,0,0,Color.BLACK));
         Panel2.add(Back4);
     }
-    public String getMarc(int x) throws FileNotFoundException, IOException
+    public Puntaje getMarc() throws IOException
     {
-        
-        
-        FileReader file= new FileReader("Resources/Puntaje/Puntaje.txt");
-        BufferedReader reader = new BufferedReader(file);
-        int ind=0;
-        String line=reader.readLine();
-        while(ind!=x)
-        {
-            line=reader.readLine();
-            ind++;
-        }
-        reader.close();
-        return line;
+       Puntaje p= new Puntaje();
+       p.Init();
+       p.createPunt();
+       return p;
+    }
+    public void saveMarc(Player p)
+    {
+       leaderboards.save(p);
     }
     
 }

@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 package Ventanas;
+import Componentes_Jugador.Player;
 import Manager.LevelManager;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -89,7 +93,11 @@ public class Gestor2
     {
         this.LManager=new LevelManager(this);
         VentanaInicial=new Ventana_Inicial(Titulo,FuenteTitulo,Back,Icono,Btn, this);
-        VentanaStatics=new Ventana_Estadisticas(Titulo,FuenteTitulo,Back,Icono,Btn,Back2,this);
+      try {
+          VentanaStatics=new Ventana_Estadisticas(Titulo,FuenteTitulo,Back,Icono,Btn,Back2,this);
+      } catch (IOException ex) {
+          Logger.getLogger(Gestor2.class.getName()).log(Level.SEVERE, null, ex);
+      }
         VentanaDatos=new Ventana_Datos(Titulo,FuenteTitulo,Back,Icono,Btn,this);
         VentanaJuego=new Ventana_Juego(Titulo,FuenteTitulo,Icono,Btn,FuenteMarc,this,LManager);
         VentanaFinal= new Ventana_Final(Titulo,FuenteTitulo,Back,Icono,Btn, this);
@@ -116,6 +124,9 @@ public class Gestor2
     }
     public void endGame()
     {
+     Player p= new Player();
+     p.Init(VentanaDatos.getPlayerNam(),VentanaJuego.getMarc());
+     VentanaStatics.saveMarc(p);
      VentanaFinal.setMarc(VentanaJuego.getMarc());
      VentanaJuego.stopExcecution();
      VentanaJuego.dispose();

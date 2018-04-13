@@ -29,4 +29,20 @@ public class Player
  {
      this.next=pl;
  }
+ public void setName(String n)
+ {
+     this.name=n;
+ }
+ public void setPunt(int punt)
+ {
+     this.punt=punt;
+ }
+ public int getPunt()
+ {
+     return this.punt;
+ }
+ public String getName()
+ {
+     return this.name;
+ }
 }

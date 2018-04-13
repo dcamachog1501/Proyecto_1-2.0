@@ -96,6 +96,10 @@ public class Ventana_Datos extends JFrame
   {
       return this.nave;
   }
+  public String getPlayerNam()
+  {
+      return this.PlayerNam;
+  }
   /**
    * Metodo para iniciar el Thread principal del juego.
    */
@@ -192,6 +196,7 @@ public class Ventana_Datos extends JFrame
         Panel2.add(Nav);
 
         Nombre.setBounds(160,50,200,30);
+        Nombre.setText("Player");
         Nombre.setFont(fuentem.deriveFont(Font.PLAIN,15));
         Nombre.setForeground(Color.BLACK);
         Nombre.setBorder(BorderFactory.createMatteBorder(4,4,4,4,Color.GRAY));
