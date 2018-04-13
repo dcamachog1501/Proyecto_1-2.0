@@ -11,7 +11,6 @@ import Hileras.Hileras_GUI;
 import Manager.LevelManager;
 import Threads.BasicMove;
 import Threads.Left;
-import Threads.Level_Verifier;
 import Threads.Right;
 import Threads.Setup;
 import Threads.Shoot;
@@ -27,6 +26,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -67,12 +68,11 @@ public class Ventana_Juego extends JFrame
     private final Gestor2 gest;
     //Thread que permite el movimiento continuo de los enemigos.
     private Thread mover;
-    private Object move;
+    private BasicMove move;
     
     private boolean cond;
     
     private LevelManager LManager;
-    private Level_Verifier level;
     private Thread r;
     private Right right;
     private Thread l;
@@ -100,7 +100,6 @@ public class Ventana_Juego extends JFrame
 
        
        this.cond=false;
-       this.level= new Level_Verifier(gest);
        this.move=LManager.getCurrent().getMove();
        this.right=new Right(gest);
        this.left= new Left(gest);
@@ -232,9 +231,38 @@ public class Ventana_Juego extends JFrame
         }
     }
     public boolean getCond()
-   {
-       return cond; 
-   }
+    {
+        return cond; 
+    }
+    public int getMarc()
+    {
+        return this.marc;
+    }
+    public void stopExcecution()
+    {
+        try 
+        {
+            right.chnBool();
+        } catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+        try 
+        {
+            left.chnBool();
+        } catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+        try 
+        {
+          this.move.chnBool();
+        } catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+        gest.getDatos().getSet().stop();
+    }
   /**
    * Metodo que inicializa la ventana
    */

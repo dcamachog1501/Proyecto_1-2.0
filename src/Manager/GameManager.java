@@ -41,18 +41,26 @@ public class GameManager
         try{
             gestor.getGame().getLManager().getCurrent().Render(g,gestor.getGame().getCanvas());
         }catch(Exception e){
-            render(g);
+            //render(g);
         }
-        if (gestor.getGame().getCond()==false)
+        try
         {
-        nave.render(g);
+            if (gestor.getGame().getCond()==false)
+            {
+            nave.render(g);
+            }
+            else
+            {
+            System.out.println("Shooting");
+            nave.render(g);
+            bala.Render(g);
+            }
         }
-        else
+        catch(Exception e)
         {
-        System.out.println("Shooting");
-        nave.render(g);
-        bala.Render(g);
+            
         }
+        
     }
     public Nave getNav()
     {

@@ -29,6 +29,7 @@ public class Gestor2
   private Ventana_Estadisticas VentanaStatics;
   private  Ventana_Datos VentanaDatos;
   private  Ventana_Juego VentanaJuego;
+  private Ventana_Final VentanaFinal;
   private LevelManager LManager;
     public Gestor2()
     {
@@ -80,6 +81,10 @@ public class Gestor2
     {
        VentanaJuego.setVisible(true);
     }
+    public void gestFinal()
+    {
+        VentanaFinal.setVisible(true);
+    }
     public void Init()
     {
         this.LManager=new LevelManager(this);
@@ -87,6 +92,7 @@ public class Gestor2
         VentanaStatics=new Ventana_Estadisticas(Titulo,FuenteTitulo,Back,Icono,Btn,Back2,this);
         VentanaDatos=new Ventana_Datos(Titulo,FuenteTitulo,Back,Icono,Btn,this);
         VentanaJuego=new Ventana_Juego(Titulo,FuenteTitulo,Icono,Btn,FuenteMarc,this,LManager);
+        VentanaFinal= new Ventana_Final(Titulo,FuenteTitulo,Back,Icono,Btn, this);
     }
     /**
      * Metodo para obtener la instancia de VentanaJuego
@@ -107,5 +113,15 @@ public class Gestor2
     public LevelManager getLManager()
     {
         return LManager;
+    }
+    public void endGame()
+    {
+     VentanaFinal.setMarc(VentanaJuego.getMarc());
+     VentanaJuego.stopExcecution();
+     VentanaJuego.dispose();
+     VentanaDatos=null;
+     VentanaJuego=null;
+     gestFinal();
+     System.out.println("------------------GAME_OVER------------------");
     }
 }

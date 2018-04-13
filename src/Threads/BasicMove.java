@@ -4,6 +4,7 @@ package Threads;
 import Componentes_Jugador.Bullet;
 import Enemigos.Boss;
 import Enemigos.Enemy;
+import Enemigos.Type_A;
 import Enemigos.Type_B;
 import Enemigos.Type_E;
 import Hileras.A_Line;
@@ -30,6 +31,7 @@ public class BasicMove implements Runnable
     private double ang=0;
     private int inX;
     private boolean cond;
+    private boolean bool;
     public BasicMove()
     {
         
@@ -40,12 +42,13 @@ public class BasicMove implements Runnable
         this.gestor=gest;
         this.cont=0;
         this.cond=true;
+        this.bool=true;
     }
     @Override
     public void run() 
     {
         
-        while(true)
+        while(bool)
         {
          if(hilera.getClass()==Basic_Line.class||hilera.getClass()==A_Line.class)
          {
@@ -347,11 +350,45 @@ public class BasicMove implements Runnable
                  e.printStackTrace();
              }
          }
+         verify();
         }
       }
     public void updateHil()
     {
         this.hilera=gestor.getGame().getLManager().getCurrent();
+    }
+    public void verify()
+    {
+        if(hilera.getClass()==A_Line.class||hilera.getClass()==B_Line.class||hilera.getClass()==A_Line.class||hilera.getClass()==Basic_Line.class)
+        {
+            Enemy temp=hilera.getHead();
+            while(temp!=null)
+            {
+                if(temp.getY()+10>=gestor.getDatos().getSet().getNave().getNavy())
+                {
+                                                
+                    gestor.endGame();
+                    break;
+                }
+                temp=temp.getNext();
+            }
+        }
+        else if(hilera.getClass()==C_Line.class||hilera.getClass()==D_Line.class||hilera.getClass()==E_Line.class||hilera.getClass()==Basic_Line.class)
+        {
+            Enemy temp=hilera.getHead();
+            int ind=0;
+            int lenl=hilera.getLen();
+            while(ind!=lenl)
+            {
+               if(temp.getY()+10>=gestor.getDatos().getSet().getNave().getNavy())
+                {
+                    gestor.endGame();
+                    break;
+                }
+                temp=temp.getNext();
+                ind++;
+            }
+        }
     }
     public void chnBoss(Line h)
     {
@@ -383,6 +420,11 @@ public class BasicMove implements Runnable
             ind2++;
         }
         ((B_Line)h).Swap(temp, temp2);
-    }     
+    }
+    public void chnBool()
+    {
+        bool = !bool;
+    }
 }
+
 

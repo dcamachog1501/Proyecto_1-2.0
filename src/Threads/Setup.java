@@ -63,7 +63,8 @@ public class Setup implements Runnable
     }
     public synchronized void stop()
     {
-        if(!runnig)
+        runnig=false;
+        if(runnig==false)
             return;
             runnig=false;
         try 
@@ -79,7 +80,14 @@ public class Setup implements Runnable
     public void render()
     {
         System.out.println("rendering");
+        try
+        {
         buffer=gestor.getGame().getCanvas().getBufferStrategy();
+        }
+        catch(Exception e)
+        {
+            
+        }
         if(buffer==null)
                 {
                     gestor.getGame().getCanvas().createBufferStrategy(3);

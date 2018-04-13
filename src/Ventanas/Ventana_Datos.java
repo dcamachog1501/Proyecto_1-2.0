@@ -7,7 +7,6 @@ package Ventanas;
 
 import Componentes_Jugador.Nave;
 import Manager.LevelManager;
-import Threads.Level_Verifier;
 import Threads.Setup;
 import java.awt.*;
 import java.awt.event.*;
@@ -31,19 +30,17 @@ public class Ventana_Datos extends JFrame
   
   //Naves disponibles en el juego(dependiendo del tamaño se utilizan en diferentes partes del juego)
   private final Image Back1=Toolkit.getDefaultToolkit().getImage("Resources/Backgrounds/Back.png");
-  private  final Image Nav1=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave1.png");
-  private  final Image Nav2=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave2.png");
-  private  final Image Nav3=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave3.png");
-  private  final Image Nav4=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave4.png");
-  private  final Image Nav1_1=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave1_1.png");
-  private  final Image Nav2_1=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave2_1.png");
-  private  final Image Nav3_1=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave3_1.png");
-  private  final Image Nav4_1=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave4_1.png");
+  private final Image Nav1=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave1.png");
+  private final Image Nav2=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave2.png");
+  private final Image Nav3=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave3.png");
+  private final Image Nav4=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave4.png");
+  private final Image Nav1_1=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave1_1.png");
+  private final Image Nav2_1=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave2_1.png");
+  private final Image Nav3_1=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave3_1.png");
+  private final Image Nav4_1=Toolkit.getDefaultToolkit().getImage("Resources/Naves/Nave4_1.png");
   private final Image Right=Toolkit.getDefaultToolkit().getImage("Resources/Iconos/right.png");
   private final Image Left=Toolkit.getDefaultToolkit().getImage("Resources/Iconos/left.png");
   private Setup Inicio;
-  private Level_Verifier Level;
-  private Thread LevelT;
   private Nave nave;
   private boolean cond;
   
@@ -81,7 +78,6 @@ public class Ventana_Datos extends JFrame
     this.color=Btn;
     this.fuentem=Fuente;
     this.gest=gest;
-    this.Level=new Level_Verifier(gest);
     this.nave= new Nave(gest);
     Init();
   }
@@ -91,6 +87,10 @@ public class Ventana_Datos extends JFrame
   public  void changeLbl()
   {
      Nav.setIcon(new ImageIcon(navselector[ind]));
+  }
+  public void stop()
+  {
+      Inicio.stop();
   }
   public Nave getNave()
   {

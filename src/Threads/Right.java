@@ -17,18 +17,20 @@ public class Right implements Runnable
 {
 private final Gestor2 gestor;
 private Boolean cond;
+private boolean bool;
 
 public Right(Gestor2 gest)
 {
     this.gestor=gest;
     this.cond=false;
+    this.bool=true;
 }
     
 
     @Override
     public void run() 
     {
-      while(true)
+      while(bool)
       {
       if(cond==true)
       {
@@ -73,5 +75,8 @@ public Right(Gestor2 gest)
             cond=true;
         }
     }
-    
+    public void chnBool()
+    {
+        bool = !bool;
+    }
 }

@@ -18,19 +18,21 @@ public class Left implements Runnable
 private final Gestor2 gestor;
 private int Navx;
 private boolean cond;
+private boolean bool;
 
 public Left(Gestor2 gest)
 {
     this.gestor=gest;
     this.Navx=gestor.getDatos().getNave().getNavx();
     this.cond=false;
+    this.bool=true;
 }
     
 
     @Override
     public void run() 
     {
-      while(true)
+      while(bool)
       {
         if(cond==true)
         {
@@ -74,5 +76,9 @@ public Left(Gestor2 gest)
         {
             cond=true;
         }
+    }
+    public void chnBool()
+    {
+        bool = !bool;
     }
 }

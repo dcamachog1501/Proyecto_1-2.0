@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import java.io.FileReader;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -13,6 +14,11 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,11 +39,12 @@ public class Ventana_Estadisticas extends JFrame
     private Font fuentem;
     private Gestor2 gest;
     private Image back2;
+    private FileReader reader;
     public Ventana_Estadisticas()
     {
         
     }
-    public Ventana_Estadisticas(String title,Font Fuente,Image back,Image Icono, Color Btn, Image back2,Gestor2 gest)
+    public Ventana_Estadisticas(String title,Font Fuente,Image back,Image Icono, Color Btn, Image back2,Gestor2 gest) throws IOException
     {
         this.title=title;
         this.back=back;
@@ -49,7 +56,7 @@ public class Ventana_Estadisticas extends JFrame
         this.back2=back2;
         Init();
     }
-    public void Init()
+    public void Init() throws IOException
     {
         setTitle(title);
         setSize(1050,700);
@@ -100,31 +107,31 @@ public class Ventana_Estadisticas extends JFrame
         Label3.setBounds(60,0,1000,100);
         Panel3.add(Label3);
 
-         JLabel Label4= new JLabel("1.     --");
+        JLabel Label4= new JLabel("1. "+ getMarc(0));
         Label4.setFont(fuentem.deriveFont(Font.PLAIN, 40));
         Label4.setForeground(Color.GREEN);
         Label4.setBounds(40,100,1000,100);
         Panel3.add(Label4);
 
-         JLabel Label5= new JLabel("2.     --");
+         JLabel Label5= new JLabel("2. "+getMarc(1));
         Label5.setFont(fuentem.deriveFont(Font.PLAIN, 40));
         Label5.setForeground(Color.GREEN);
         Label5.setBounds(40,200,1000,100);
         Panel3.add(Label5);
 
-         JLabel Label6= new JLabel("3.     --");
+         JLabel Label6= new JLabel("3. "+getMarc(2));
         Label6.setFont(fuentem.deriveFont(Font.PLAIN, 40));
         Label6.setForeground(Color.GREEN);
         Label6.setBounds(40,300,1000,100);
         Panel3.add(Label6);
 
-         JLabel Label7= new JLabel("4.     --");
+         JLabel Label7= new JLabel("4. "+getMarc(3));
         Label7.setFont(fuentem.deriveFont(Font.PLAIN, 40));
         Label7.setForeground(Color.GREEN);
         Label7.setBounds(40,400,1000,100);
         Panel3.add(Label7);
 
-         JLabel Label8= new JLabel("5.     --");
+         JLabel Label8= new JLabel("5. "+getMarc(4));
         Label8.setFont(fuentem.deriveFont(Font.PLAIN, 40));
         Label8.setForeground(Color.GREEN);
         Label8.setBounds(40,500,1000,100);
@@ -183,4 +190,21 @@ public class Ventana_Estadisticas extends JFrame
         Back4.setBorder(BorderFactory.createMatteBorder(0,4,0,0,Color.BLACK));
         Panel2.add(Back4);
     }
+    public String getMarc(int x) throws FileNotFoundException, IOException
+    {
+        
+        
+        FileReader file= new FileReader("Resources/Puntaje/Puntaje.txt");
+        BufferedReader reader = new BufferedReader(file);
+        int ind=0;
+        String line=reader.readLine();
+        while(ind!=x)
+        {
+            line=reader.readLine();
+            ind++;
+        }
+        reader.close();
+        return line;
+    }
+    
 }

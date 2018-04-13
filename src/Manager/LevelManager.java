@@ -24,7 +24,6 @@ public class LevelManager
  Line currentL;
  Level currentLvl;
  Object currentM;
- BasicMove move;
  Level_Creator leveler;
  
  public LevelManager(Gestor2 gest)
@@ -34,7 +33,6 @@ public class LevelManager
      this.leveler= new Level_Creator(gestor);
      this.currentLvl=leveler.createLevel(Level);
      this.currentL=currentLvl.getHead();
-     this.currentM=currentL.getMove();
  }
  public Line getCurrent()
  {
