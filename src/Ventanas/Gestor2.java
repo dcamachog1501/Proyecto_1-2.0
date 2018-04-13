@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package Ventanas;
+import Componentes_Jugador.Nave;
 import Componentes_Jugador.Player;
 import Manager.LevelManager;
+import Threads.Setup;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +36,8 @@ public class Gestor2
   private  Ventana_Datos VentanaDatos;
   private  Ventana_Juego VentanaJuego;
   private Ventana_Final VentanaFinal;
+  private Setup s;
+  private Nave n;
   private LevelManager LManager;
     public Gestor2()
     {
@@ -92,14 +96,16 @@ public class Gestor2
     public void Init()
     {
         this.LManager=new LevelManager(this);
+        this.n= new Nave(this);
+        this.s= new Setup(this,n);
         VentanaInicial=new Ventana_Inicial(Titulo,FuenteTitulo,Back,Icono,Btn, this);
       try {
           VentanaStatics=new Ventana_Estadisticas(Titulo,FuenteTitulo,Back,Icono,Btn,Back2,this);
       } catch (IOException ex) {
           Logger.getLogger(Gestor2.class.getName()).log(Level.SEVERE, null, ex);
       }
-        VentanaDatos=new Ventana_Datos(Titulo,FuenteTitulo,Back,Icono,Btn,this);
-        VentanaJuego=new Ventana_Juego(Titulo,FuenteTitulo,Icono,Btn,FuenteMarc,this,LManager);
+        VentanaDatos=new Ventana_Datos(Titulo,FuenteTitulo,Back,Icono,Btn,this,s);
+        VentanaJuego=new Ventana_Juego(Titulo,FuenteTitulo,Icono,Btn,FuenteMarc,this,LManager,s);
         VentanaFinal= new Ventana_Final(Titulo,FuenteTitulo,Back,Icono,Btn, this);
     }
     /**

@@ -6,7 +6,6 @@
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Ventanas/Ventana_Datos.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Enemigos/Boss.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Ventanas/Ventana_Final.java</file>
-            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Fabrica_Enemigos/Basic_Creator.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Ventanas/Ventana_Estadisticas.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Fabrica_Hileras/A_Line_Creator.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Fabrica_Enemigos/B_Creator.java</file>
@@ -15,6 +14,7 @@
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Threads/Left.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Hileras/Line.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Enemigos/Basic.java</file>
+            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Componentes_Jugador/Bullet.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Threads/Shoot.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Level_Creator/Level.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Componentes_Jugador/Player.java</file>
@@ -32,10 +32,7 @@
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Fabrica_Enemigos/Boss_Creator.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Enemigos/Type_B.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Hileras/B_Line.java</file>
-            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Enemigos/Enemy_GUI.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Componentes_Jugador/Puntaje.java</file>
-            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Fabrica_Enemigos/Enemy_Creator.java</file>
-            <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Enemigos/Enemy.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Fabrica_Hileras/Line_Creator.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Ventanas/Gestor2.java</file>
             <file>file:/C:/Users/dcama/Desktop/Proyecto_1/src/Hileras/Hileras_GUI.java</file>

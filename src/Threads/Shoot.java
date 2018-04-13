@@ -26,24 +26,21 @@ public class Shoot implements Runnable
     private int Navx;
     private int Navy;
     private Setup set;
-    private KeyListener tec2;
-    public Shoot(Gestor2 gest)
+    private boolean running;
+    public Shoot(Gestor2 gest, Setup set)
     {
         this.gestor=gest;
-        this.Navx=gestor.getDatos().getSet().getNave().getNavx();
-        this.Navy=gestor.getDatos().getSet().getNave().getNavy();
-        this.set=gestor.getDatos().getSet();
-        this.tec2=gestor.getGame().getTec();
+        this.set= set;
+        this.Navx=set.getNave().getNavx();
+        this.Navy=set.getNave().getNavy();
+        this.running=true;
     }        
     @Override
     public void run() 
     {
-        gestor.getGame().chanCond();
-        set.getBull().stnCond();
-        gestor.getGame().rem();
-        set.getBull().setBullx(0);
-        set.getBull().setBullx(Navx+17);
-        while(set.getBull().getBully()>0)
+    while(running)
+    {
+    while(set.getBull().getBully()>0)
         {
             Enemy temp=null;
             try
@@ -100,8 +97,11 @@ public class Shoot implements Runnable
                     }
                 } 
             }
-            if(set.getBull().getCond()==0)
+            if(gestor.getGame().getCond())
             {
+                gestor.getDatos().getSet().getBull().setBullx(0);
+                gestor.getDatos().getSet().getBull().setBullx(gestor.getDatos().getSet().getNave().getNavx()+17);
+                System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX PRA");
             try {
                 set.getBull().chnBully(-25);
                 Thread.sleep(10);
@@ -116,12 +116,12 @@ public class Shoot implements Runnable
                 break;
             }
         }
-        if(set.getBull().getCond()==0)
+        if(set.getBull().getCond()<=0)
         {
         set.getBull().setBully(Navy);
         gestor.getGame().chanCond();
         gestor.getGame().adder();
         }
     }
-    
+    }  
 }

@@ -77,9 +77,12 @@ public class Ventana_Juego extends JFrame
     private Right right;
     private Thread l;
     private Left left;
+    private Thread s;
+    private Shoot shoot;
     private boolean condr;
     private boolean condl;
-    Ventana_Juego(String title,Font FuenteT,Image Icono, Color Btn,Font FuenteM,Gestor2 gest,LevelManager lvl)
+    private Setup set;
+    Ventana_Juego(String title,Font FuenteT,Image Icono, Color Btn,Font FuenteM,Gestor2 gest,LevelManager lvl,Setup set)
     {
        this.LManager=lvl;
        this.tec0=new Teclado0();
@@ -97,12 +100,14 @@ public class Ventana_Juego extends JFrame
        this.Punt4= new JLabel();
        this.Punt5= new JLabel();
        this.Punt7= new JLabel();
+       this.set=set;
 
        
        this.cond=false;
        this.move=LManager.getCurrent().getMove();
        this.right=new Right(gest);
        this.left= new Left(gest);
+       this.shoot= new Shoot(gest,set);
        this.condr= true;
        this.condl=true;
        Init();
@@ -184,6 +189,18 @@ public class Ventana_Juego extends JFrame
             }
       );
       mover.start();
+      
+      s= new Thread((Runnable)shoot);
+      
+      s.setUncaughtExceptionHandler(
+      new Thread.UncaughtExceptionHandler() {
+        @Override
+        public void uncaughtException(Thread t, Throwable e) {
+            e.printStackTrace();
+                }
+            }
+      );
+      s.start();
   }
   public Thread getMover()
   {
@@ -418,23 +435,24 @@ public class Ventana_Juego extends JFrame
         @Override
         public void keyTyped(KeyEvent e) 
         {
-      
+            
         }
         @Override
         public void keyPressed(KeyEvent e) 
         {
             int code= e.getKeyCode();
-            if(code==KeyEvent.VK_F)
+            if(code==KeyEvent.VK_SPACE)
             {
-              System.out.println("F");
-              Shoot s= new Shoot(gest);
-              s.run();
+                gest.getGame().chanCond();
+                gest.getDatos().getSet().getBull().stnCond();
+                rem();
+                
             }
         }
         @Override
         public void keyReleased(KeyEvent e) 
         {
-       
+            
         }
       
   
